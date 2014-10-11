@@ -66,12 +66,3 @@ class ArrayQueue[@specialized(Int, Float, Short) T] private[mutable] (private va
 	override def toString() =
 		buffer.mkString(", ")
 }
-
-object Main extends App {
-	val mb = new ArrayQueue[Int](3)
-	mb += 1
-	mb += 2
-	mb += 3
-	mb += 4
-	mb += 5
-}
