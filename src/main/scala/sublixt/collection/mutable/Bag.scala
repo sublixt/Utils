@@ -2,11 +2,13 @@ package sublixt.collection.mutable
 
 import scala.reflect.ClassTag
 
-class Bag[@specialized(Int, Float, Short) T] private (private var buffer: Array[T])(implicit private val tag: ClassTag[T]) {
-	private var p = 0
-
+/* A rough first pass of my bag class.
+ * O(1) for Indexing, Insertion, and Deletion as long as order doesnt matter
+ * 
+ * */
+class Bag[@specialized(Int, Float, Short) T] private[mutable] (private var buffer: Array[T], private var p: Int)(implicit private val tag: ClassTag[T]) {
 	def this(initialLength: Int)(implicit tag: ClassTag[T]) {
-		this(new Array[T](initialLength))
+		this(new Array[T](initialLength), 0)
 	}
 
 	def this()(implicit tag: ClassTag[T]) {
@@ -19,6 +21,25 @@ class Bag[@specialized(Int, Float, Short) T] private (private var buffer: Array[
 		if (index < 0) throw new IndexOutOfBoundsException("Negative Index")
 		else if (index >= p) throw new IndexOutOfBoundsException("Index too big")
 		else buffer(index)
+
+	def foreach[B](f: T => B) {
+		var i = 0
+		while (i < p) {
+			f(buffer(i))
+			i += 1
+		}
+	}
+	
+	def map[B](f: T => B)(implicit tag: ClassTag[B]) = {
+		val temp = new Array[B](capacity)
+		var i = 0
+		while (i < p) {
+			temp(i) = f(buffer(i))
+			i += 1
+		}
+		
+		new Bag(temp, p)
+	}
 
 	def update(i: Int, t: T) = {
 		if (i < 0) throw new IndexOutOfBoundsException("Negative Index")
@@ -102,10 +123,12 @@ class Bag[@specialized(Int, Float, Short) T] private (private var buffer: Array[
 	}
 
 	def removeLast() = {
-		p -= 1
-		val removedValue = buffer(p)
-		buffer(p) = null.asInstanceOf[T]
-		removedValue
+		if (p != 0) {
+			p -= 1
+			val removedValue = buffer(p)
+			buffer(p) = null.asInstanceOf[T]
+			removedValue
+		} else null.asInstanceOf[T]
 	}
 
 	private def grow() {
