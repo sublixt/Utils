@@ -62,7 +62,4 @@ class ArrayQueue[@specialized(Int, Float, Short) T] private[mutable] (private va
 		p = c
 		buffer = newBuffer
 	}
-
-	override def toString() =
-		buffer.mkString(", ")
 }
