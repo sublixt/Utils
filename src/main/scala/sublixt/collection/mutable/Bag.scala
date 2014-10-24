@@ -70,7 +70,7 @@ class Bag[@specialized(Int, Float, Short) T] private[mutable] (private var buffe
 			p += 1
 		}
 	}
-
+	
 	def insert(index: Int, t: T) {
 		if (p == buffer.length) {
 			grow()
