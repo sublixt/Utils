@@ -5,4 +5,3 @@ package object math
 	with SquareRootFunctions
 	with TrigFunctions
 	with RoundingFunctions
-	with LogFunctions
