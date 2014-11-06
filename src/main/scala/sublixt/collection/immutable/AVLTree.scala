@@ -2,6 +2,8 @@ package sublixt.collection.immutable
 
 object AVLTree {
 	def empty: AVLTree[Nothing] = Leaf
+	def apply[A](elem: A, elems: A*)(implicit order: Ordering[A]) =
+		elems.foldLeft(Node(Leaf, elem, Leaf): AVLTree[A])(_ + _)
 }
 
 trait AVLTree[+A] {
