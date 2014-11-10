@@ -1,115 +1,50 @@
 package sublixt.collection.immutable
 
-object AVLTree {
-	def empty[A]: AVLTree[A] = AVLeaf
-	def apply[A](elem: A, elems: A*)(implicit order: Ordering[A]) =
-		elems.foldLeft(AVLNode(AVLeaf, elem, AVLeaf): AVLTree[A])(_ + _)
-}
-
-sealed trait AVLTree[+A] {
-	def +[A1 >: A](elem: A1)(implicit order: Ordering[A1]): AVLTree[A1]
-	def -[A1 >: A](elem: A1)(implicit order: Ordering[A1]): AVLTree[A1]
-	protected[immutable] def rebalance[A1 >: A](implicit order: Ordering[A1]): AVLTree[A1]
-	def apply[A1 >: A](elem: A1)(implicit order: Ordering[A1]): AVLTree[A1]
+sealed trait Tree[+A] {
+	def +[A1 >: A](elem: A1)(implicit order: Ordering[A1]): Tree[A1]
+	def -[A1 >: A](elem: A1)(implicit order: Ordering[A1]): Tree[A1]
+	def apply[A1 >: A](elem: A1)(implicit order: Ordering[A1]): Tree[A1]
 	def contains[A1 >: A](elem: A1)(implicit order: Ordering[A1]): Boolean
 	def prune[A1 >: A](min: A1, max: A1)(implicit order: Ordering[A1]): Tree[A1]
-	def foreach(f: A => Unit)
 	def foldLeft[B](sum: B)(f: (B, A) => B): B
 	def foldRight[B](sum: B)(f: (B, A) => B): B
 	def foldInOrder[B](sum: B)(f: (B, A) => B): B = foldLeft(sum)(f)
 	def foldPreOrder[B](sum: B)(f: (B, A) => B): B
 	def foldPostOrder[B](sum: B)(f: (B, A) => B): B
+	def foreach(f: A => Unit)
 	def depth: Int
 	def isEmpty: Boolean
-	def balance: Int
 }
 
-case class AVLNode[A](left: AVLTree[A], value: A, right: AVLTree[A]) extends AVLTree[A] {
+case class Node[+A](val left: Tree[A], val value: A, val right: Tree[A]) extends Tree[A] {
 	def +[A1 >: A](elem: A1)(implicit order: Ordering[A1]) = {
 		val comp = order.compare(elem, value)
 		//must rebalance the tree all the way up from the node elem was inserted into
-		if (comp > 0) AVLNode(left, value, right + elem).rebalance
-		else if (comp < 0) AVLNode(left + elem, value, right).rebalance
+		if (comp > 0) Node(left, value, right + elem)
+		else if (comp < 0) Node(left + elem, value, right)
 		else this
 	}
 
 	def -[A1 >: A](elem: A1)(implicit order: Ordering[A1]) = {
 		val comp = order.compare(elem, value)
 		//must rebalance the tree all the way up from the node elem was inserted into
-		(if (comp > 0) AVLNode(left, value, right - elem)
-		else if (comp < 0) AVLNode(left - elem, value, right)
+		if (comp > 0) Node(left, value, right - elem)
+		else if (comp < 0) Node(left - elem, value, right)
 		else {
 				//recreates the subtree where elem was removed
-				def combineLeftRight(left: AVLTree[A1], right: AVLTree[A1]): AVLTree[A1] = {
-					if (left == AVLeaf) right
-					else if (right == AVLeaf) left
+				def combineLeftRight(left: Tree[A1], right: Tree[A1]): Tree[A1] = {
+					if (left == Leaf) right
+					else if (right == Leaf) left
 					else {
-						val AVLNode(rl, rv, rr) = right
-						AVLNode(combineLeftRight(left, rl), rv, rr)
+						val Node(rl, rv, rr) = right
+						Node(combineLeftRight(left, rl), rv, rr)
 					}
 				}
 
 			combineLeftRight(left, right)
-		}).rebalance
-	}
-
-	protected[immutable] def rebalance[A1 >: A](implicit order: Ordering[A1]) = {
-		//calculate the balance factor of the parent
-		val bfp = balance
-		if (bfp == 2) { //the tree is imbalanced to the left
-			val l = left.asInstanceOf[AVLNode[A1]]
-			val ll = l.left
-			val lr = l.right
-			//calculate the balace factor of the left node
-			val bfn = l.balance
-
-			if (bfn == -1) {
-				val lrn = lr.asInstanceOf[AVLNode[A1]]
-				val lrl = lrn.left
-				val lrr = lrn.right
-				//rotates the tree left then right
-				//this solves the cases of
-				//   n
-				// n
-				//  n
-				AVLNode(AVLNode(ll, l.value, lrl), lrn.value, AVLNode(lrr, value, right))
-			} else
-				//rotates the tree right
-				//this solves the cases of
-				//   n
-				//  n
-				// n
-				AVLNode(ll, l.value, AVLNode(lr, value, right))
-		} else if (bfp == -2) { //the tree is imbalanced to the right
-			val r = right.asInstanceOf[AVLNode[A1]]
-			val rl = r.left
-			val rr = r.right
-			//calculate the balace factor of the right node
-			val bfn = r.balance
-
-			if (bfn == 1) {
-				val rln = rl.asInstanceOf[AVLNode[A1]]
-				val rll = rln.left
-				val rlr = rln.right
-				//rotates the tree right then left
-				//this solves the cases of
-				//   n
-				//     n
-				//    n
-				AVLNode(AVLNode(left, value, rll), rln.value, AVLNode(rlr, r.value, rr))
-			} else
-				//rotates the tree left
-				//this solves the cases of
-				//   n
-				//    n
-				//     n
-				AVLNode(AVLNode(left, value, rl), r.value, rr)
-		} else {
-			//the tree is balanced (balance factor is in the range [-1, 1])
-			this
 		}
 	}
-
+	
 	def apply[A1 >: A](elem: A1)(implicit order: Ordering[A1]) = {
 		val comp = order.compare(elem, value)
 		if (comp == 0) this
@@ -123,7 +58,7 @@ case class AVLNode[A](left: AVLTree[A], value: A, right: AVLTree[A]) extends AVL
 		else if (comp > 0) right.contains(elem)
 		else left.contains(elem)
 	}
-
+	
 	def prune[A1 >: A](min: A1, max: A1)(implicit order: Ordering[A1]): Tree[A1] = {
 		//this doesnt create a legal AVLTree
 		val minComp = order.compare(value, min)
@@ -135,7 +70,7 @@ case class AVLNode[A](left: AVLTree[A], value: A, right: AVLTree[A]) extends AVL
 		else
 			Node(left.prune(min, max), value, right.prune(min, max))
 	}
-
+	
 	def foldLeft[B](sum: B)(f: (B, A) => B): B = {
 		val lsum = left.foldLeft(sum)(f)
 		val vsum = f(lsum, value)
@@ -159,25 +94,24 @@ case class AVLNode[A](left: AVLTree[A], value: A, right: AVLTree[A]) extends AVL
 		val rsum = right.foldPostOrder(lsum)(f)
 		f(rsum, value)
 	}
-	
+
 	def foreach(f: A => Unit) {
 		left foreach f
 		f(value)
 		right foreach f
 	}
 	
+	val depth = scala.math.max(left.depth, right.depth) + 1
 	def isEmpty = false
-	lazy val depth = scala.math.max(left.depth, right.depth) + 1
-	lazy val balance = left.depth - right.depth
 }
 
-case object AVLeaf extends AVLTree[Nothing] {
-	def +[A1 >: Nothing](elem: A1)(implicit order: Ordering[A1]) = AVLNode(AVLeaf, elem, AVLeaf)
+case object Leaf extends Tree[Nothing] {
+	def +[A1 >: Nothing](elem: A1)(implicit order: Ordering[A1]) = Node(Leaf, elem, Leaf)
 	def -[A1 >: Nothing](elem: A1)(implicit order: Ordering[A1]) = this
 	protected[immutable] def rebalance[A1 >: Nothing](implicit order: Ordering[A1]) = this
 	def apply[A1 >: Nothing](elem: A1)(implicit order: Ordering[A1]) = this
 	def contains[A1 >: Nothing](elem: A1)(implicit order: Ordering[A1]) = false
-	def prune[A1 >: Nothing](min: A1, max: A1)(implicit order: Ordering[A1]) = Leaf
+	def prune[A1 >: Nothing](min: A1, max: A1)(implicit order: Ordering[A1]) = this
 	def foldLeft[B](sum: B)(f: (B, Nothing) => B): B = sum
 	def foldRight[B](sum: B)(f: (B, Nothing) => B): B = sum
 	def foldPreOrder[B](sum: B)(f: (B, Nothing) => B): B = sum
@@ -185,5 +119,4 @@ case object AVLeaf extends AVLTree[Nothing] {
 	def foreach(f: Nothing => Unit) {}
 	def depth = 0
 	def isEmpty = true
-	def balance = 0
 }
