@@ -1,5 +1,11 @@
 package sublixt.collection.immutable
 
+object Tree {
+	def empty[A]: Tree[A] = Leaf
+	def apply[A](elem: A, elems: A*)(implicit order: Ordering[A]) =
+		elems.foldLeft(Node(Leaf, elem, Leaf): Tree[A])(_ + _)
+}
+
 sealed trait Tree[+A] {
 	def +[A1 >: A](elem: A1)(implicit order: Ordering[A1]): Tree[A1]
 	def -[A1 >: A](elem: A1)(implicit order: Ordering[A1]): Tree[A1]
@@ -19,7 +25,6 @@ sealed trait Tree[+A] {
 case class Node[+A](val left: Tree[A], val value: A, val right: Tree[A]) extends Tree[A] {
 	def +[A1 >: A](elem: A1)(implicit order: Ordering[A1]) = {
 		val comp = order.compare(elem, value)
-		//must rebalance the tree all the way up from the node elem was inserted into
 		if (comp > 0) Node(left, value, right + elem)
 		else if (comp < 0) Node(left + elem, value, right)
 		else this
@@ -31,7 +36,6 @@ case class Node[+A](val left: Tree[A], val value: A, val right: Tree[A]) extends
 		if (comp > 0) Node(left, value, right - elem)
 		else if (comp < 0) Node(left - elem, value, right)
 		else {
-				//recreates the subtree where elem was removed
 				def combineLeftRight(left: Tree[A1], right: Tree[A1]): Tree[A1] = {
 					if (left == Leaf) right
 					else if (right == Leaf) left
@@ -60,7 +64,6 @@ case class Node[+A](val left: Tree[A], val value: A, val right: Tree[A]) extends
 	}
 	
 	def prune[A1 >: A](min: A1, max: A1)(implicit order: Ordering[A1]): Tree[A1] = {
-		//this doesnt create a legal AVLTree
 		val minComp = order.compare(value, min)
 		val maxComp = order.compare(max, value)
 		if (minComp < 0)
@@ -101,7 +104,7 @@ case class Node[+A](val left: Tree[A], val value: A, val right: Tree[A]) extends
 		right foreach f
 	}
 	
-	val depth = scala.math.max(left.depth, right.depth) + 1
+	lazy val depth = scala.math.max(left.depth, right.depth) + 1
 	def isEmpty = false
 }
 
@@ -119,4 +122,12 @@ case object Leaf extends Tree[Nothing] {
 	def foreach(f: Nothing => Unit) {}
 	def depth = 0
 	def isEmpty = true
+}
+
+object Main extends App {
+	val bla = (1 to 5000000).toList map (x => scala.util.Random.nextInt())
+	def getTime = System.nanoTime / 1000000
+	val start = getTime
+	bla.foldLeft(Tree.empty[Int])(_ + _)
+	println(getTime - start)
 }

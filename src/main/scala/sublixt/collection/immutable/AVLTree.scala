@@ -125,7 +125,6 @@ case class AVLNode[A](left: AVLTree[A], value: A, right: AVLTree[A]) extends AVL
 	}
 
 	def prune[A1 >: A](min: A1, max: A1)(implicit order: Ordering[A1]): Tree[A1] = {
-		//this doesnt create a legal AVLTree
 		val minComp = order.compare(value, min)
 		val maxComp = order.compare(max, value)
 		if (minComp < 0)
@@ -167,8 +166,9 @@ case class AVLNode[A](left: AVLTree[A], value: A, right: AVLTree[A]) extends AVL
 	}
 	
 	def isEmpty = false
-	lazy val depth = scala.math.max(left.depth, right.depth) + 1
-	lazy val balance = left.depth - right.depth
+	//these two being vals is very important for performance 
+	val depth = scala.math.max(left.depth, right.depth) + 1
+	val balance = left.depth - right.depth
 }
 
 case object AVLeaf extends AVLTree[Nothing] {
