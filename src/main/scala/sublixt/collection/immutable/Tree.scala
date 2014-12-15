@@ -20,6 +20,7 @@ sealed trait Tree[+A] {
 	def foreach(f: A => Unit)
 	def depth: Int
 	def isEmpty: Boolean
+	def toList = foldRight(Nil: List[A])((b, a) => a :: b)
 }
 
 case class Node[+A](val left: Tree[A], val value: A, val right: Tree[A]) extends Tree[A] {

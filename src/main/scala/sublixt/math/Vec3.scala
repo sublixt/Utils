@@ -18,8 +18,45 @@ case class Vec3(val x: Float, val y: Float, val z: Float) {
 
 	def cross(other: Vec3) = Vec3(y * other.z - z * other.y, z * other.x - x * other.z, x * other.y - y * other.x)
 	def dot(other: Vec3) = x * other.x + y * other.y + z * other.z
-	def length = sqrt(x * x + y * y + z * z)
+	def lengthSquared = x * x + y * y + z * z
+	def length = sqrt(lengthSquared)
 	def normalize = this / length
+
+	def min(other: Vec3) =
+		Vec3(
+			sublixt.math.min(x, other.x),
+			sublixt.math.min(y, other.y),
+			sublixt.math.min(z, other.z))
+
+	def max(other: Vec3) =
+		Vec3(
+			sublixt.math.max(x, other.x),
+			sublixt.math.max(y, other.y),
+			sublixt.math.max(z, other.z))
+
+	def clamp(min: Vec3, max: Vec3) =
+		Vec3(
+			sublixt.math.clamp(x, min.x, max.x),
+			sublixt.math.clamp(y, min.y, max.y),
+			sublixt.math.clamp(z, min.z, max.z))
+
+	def clamp(min: Float, max: Float) =
+		Vec3(
+			sublixt.math.clamp(x, min, max),
+			sublixt.math.clamp(y, min, max),
+			sublixt.math.clamp(z, min, max))
+
+	def clamp(min: Vec3, max: Float) =
+		Vec3(
+			sublixt.math.clamp(x, min.x, max),
+			sublixt.math.clamp(y, min.y, max),
+			sublixt.math.clamp(z, min.z, max))
+
+	def clamp(min: Float, max: Vec3) =
+		Vec3(
+			sublixt.math.clamp(x, min, max.x),
+			sublixt.math.clamp(y, min, max.y),
+			sublixt.math.clamp(z, min, max.z))
 
 	def unary_- = Vec3(-x, -y, -z)
 	def *(other: Vec3) = Vec3(x * other.x, y * other.y, z * other.z)
@@ -31,36 +68,12 @@ case class Vec3(val x: Float, val y: Float, val z: Float) {
 	def +(scalar: Float) = Vec3(x + scalar, y + scalar, z + scalar)
 	def -(scalar: Float) = Vec3(x - scalar, y - scalar, z - scalar)
 
-	def <(other: Vec4) =
-		x < other.x ||
-			y < other.y ||
-			z < other.z
-
-	def <=(other: Vec4) =
-		x <= other.x ||
-			y <= other.y ||
-			z <= other.z
-
-	def >(other: Vec4) =
-		x > other.x ||
-			y > other.y ||
-			z > other.z
-
-	def >=(other: Vec4) =
-		x >= other.x ||
-			y >= other.y ||
-			z >= other.z
-
-	//even though I think this is exactly how case class would implement 
-	//the equals method. I'm going to implement it for now until I'm sure
-	override def equals(other: Any) =
-		other match {
-			case Vec3(x2, y2, z2) =>
-				x == x2 &&
-				y == y2 &&
-				z == z2
-			case _ => false
-		}
+	//does matrix vector multiplication on the transposed matrix
+	def *(mat: Mat3) =
+		Vec3(
+			mat.c0.x * x + mat.c0.y * y + mat.c0.z * z,
+			mat.c1.x * x + mat.c1.y * y + mat.c1.z * z,
+			mat.c2.x * x + mat.c2.y * y + mat.c2.z * z)
 
 	def xx = Vec2(x, x)
 	def xy = Vec2(x, y)

@@ -22,6 +22,7 @@ sealed trait AVLTree[+A] {
 	def depth: Int
 	def isEmpty: Boolean
 	def balance: Int
+	def toList = foldRight(Nil: List[A])((b, a) => a :: b)
 }
 
 case class AVLNode[A](left: AVLTree[A], value: A, right: AVLTree[A]) extends AVLTree[A] {

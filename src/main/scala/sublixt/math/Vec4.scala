@@ -20,8 +20,51 @@ case class Vec4(val x: Float, val y: Float, val z: Float, val w: Float) {
 	}
 
 	def dot(other: Vec4) = x * other.x + y * other.y + z * other.z + w * other.w
-	def length = sqrt(x * x + y * y + z * z + w * w)
+	def lengthSquared = x * x + y * y + z * z + w * w
+	def length = sqrt(lengthSquared)
 	def normalize = this / length
+
+	def min(other: Vec4) =
+		Vec4(
+			sublixt.math.min(x, other.x),
+			sublixt.math.min(y, other.y),
+			sublixt.math.min(z, other.z),
+			sublixt.math.min(w, other.w))
+
+	def max(other: Vec4) =
+		Vec4(
+			sublixt.math.max(x, other.x),
+			sublixt.math.max(y, other.y),
+			sublixt.math.max(z, other.z),
+			sublixt.math.max(w, other.w))
+
+	def clamp(min: Vec4, max: Vec4) =
+		Vec4(
+			sublixt.math.clamp(x, min.x, max.x),
+			sublixt.math.clamp(y, min.y, max.y),
+			sublixt.math.clamp(z, min.z, max.z),
+			sublixt.math.clamp(w, min.w, max.w))
+
+	def clamp(min: Float, max: Float) =
+		Vec4(
+			sublixt.math.clamp(x, min, max),
+			sublixt.math.clamp(y, min, max),
+			sublixt.math.clamp(z, min, max),
+			sublixt.math.clamp(w, min, max))
+
+	def clamp(min: Vec4, max: Float) =
+		Vec4(
+			sublixt.math.clamp(x, min.x, max),
+			sublixt.math.clamp(y, min.y, max),
+			sublixt.math.clamp(z, min.z, max),
+			sublixt.math.clamp(w, min.w, max))
+
+	def clamp(min: Float, max: Vec4) =
+		Vec4(
+			sublixt.math.clamp(x, min, max.x),
+			sublixt.math.clamp(y, min, max.y),
+			sublixt.math.clamp(z, min, max.z),
+			sublixt.math.clamp(w, min, max.w))
 
 	def unary_- = Vec4(-x, -y, -z, -w)
 	def *(other: Vec4) = Vec4(x * other.x, y * other.y, z * other.z, w * other.w)
@@ -33,41 +76,13 @@ case class Vec4(val x: Float, val y: Float, val z: Float, val w: Float) {
 	def +(scalar: Float) = Vec4(x + scalar, y + scalar, z + scalar, w + scalar)
 	def -(scalar: Float) = Vec4(x - scalar, y - scalar, z - scalar, w - scalar)
 
-	def <(other: Vec4) =
-		x < other.x ||
-			y < other.y ||
-			z < other.z ||
-			w < other.w
-
-	def <=(other: Vec4) =
-		x <= other.x ||
-			y <= other.y ||
-			z <= other.z ||
-			w <= other.w
-
-	def >(other: Vec4) =
-		x > other.x ||
-			y > other.y ||
-			z > other.z ||
-			w > other.w
-
-	def >=(other: Vec4) =
-		x >= other.x ||
-			y >= other.y ||
-			z >= other.z ||
-			w >= other.w
-
-	//even though I think this is exactly how case class would implement 
-	//the equals method. I'm going to implement it for now until I'm sure
-	override def equals(other: Any) =
-		other match {
-			case Vec4(x2, y2, z2, w2) =>
-				x == x2 &&
-				y == y2 &&
-				z == z2 &&
-				w == w2
-			case _ => false
-		}
+	//does matrix vector multiplication on the transposed matrix
+	def *(mat: Mat4) =
+		Vec4(
+			mat.c0.x * x + mat.c0.y * y + mat.c0.z * z + mat.c0.w * w,
+			mat.c1.x * x + mat.c1.y * y + mat.c1.z * z + mat.c1.w * w,
+			mat.c2.x * x + mat.c2.y * y + mat.c2.z * z + mat.c2.w * w,
+			mat.c3.x * x + mat.c3.y * y + mat.c3.z * z + mat.c3.w * w)
 
 	def ww = Vec2(w, w)
 	def wx = Vec2(w, x)

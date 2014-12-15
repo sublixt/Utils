@@ -15,8 +15,39 @@ case class Vec2(val x: Float, val y: Float) {
 	}
 
 	def dot(other: Vec2) = x * other.x + y * other.y
-	def length = sqrt(x * x + y * y)
+	def lengthSquared = x * x + y * y
+	def length = sqrt(lengthSquared)
 	def normalize = this / length
+
+	def min(other: Vec2) =
+		Vec2(
+			sublixt.math.min(x, other.x),
+			sublixt.math.min(y, other.y))
+
+	def max(other: Vec2) =
+		Vec2(
+			sublixt.math.max(x, other.x),
+			sublixt.math.max(y, other.y))
+
+	def clamp(min: Vec2, max: Vec2) =
+		Vec2(
+			sublixt.math.clamp(x, min.x, max.x),
+			sublixt.math.clamp(y, min.y, max.y))
+
+	def clamp(min: Float, max: Float) =
+		Vec2(
+			sublixt.math.clamp(x, min, max),
+			sublixt.math.clamp(y, min, max))
+
+	def clamp(min: Vec2, max: Float) =
+		Vec2(
+			sublixt.math.clamp(x, min.x, max),
+			sublixt.math.clamp(y, min.y, max))
+
+	def clamp(min: Float, max: Vec2) =
+		Vec2(
+			sublixt.math.clamp(x, min, max.x),
+			sublixt.math.clamp(y, min, max.y))
 
 	def unary_- = Vec2(-x, -y)
 	def *(other: Vec2) = Vec2(x * other.x, y * other.y)
@@ -28,31 +59,11 @@ case class Vec2(val x: Float, val y: Float) {
 	def +(scalar: Float) = Vec2(x + scalar, y + scalar)
 	def -(scalar: Float) = Vec2(x - scalar, y - scalar)
 
-	def <(other: Vec4) =
-		x < other.x ||
-			y < other.y
-
-	def <=(other: Vec4) =
-		x <= other.x ||
-			y <= other.y
-
-	def >(other: Vec4) =
-		x > other.x ||
-			y > other.y
-
-	def >=(other: Vec4) =
-		x >= other.x ||
-			y >= other.y
-
-	//even though I think this is exactly how case class would implement 
-	//the equals method. I'm going to implement it for now until I'm sure
-	override def equals(other: Any) =
-		other match {
-			case Vec2(x2, y2) =>
-				x == x2 &&
-					y == y2
-			case _ => false
-		}
+	//does matrix vector multiplication on the transposed matrix
+	def *(mat: Mat2) =
+		Vec2(
+			mat.c0.x * x + mat.c0.y * y,
+			mat.c1.x * x + mat.c1.y * y)
 
 	def xx = Vec2(x, x)
 	def xy = this
