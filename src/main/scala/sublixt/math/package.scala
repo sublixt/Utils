@@ -13,6 +13,7 @@ package object math
 		def *(mat: Mat2) = mat * scalar
 		def *(mat: Mat3) = mat * scalar
 		def *(mat: Mat4) = mat * scalar
+		def *(quat: Quat) = quat * scalar
 		def +(vec: Vec2) = vec + scalar
 		def +(vec: Vec3) = vec + scalar
 		def +(vec: Vec4) = vec + scalar

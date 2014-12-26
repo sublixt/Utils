@@ -15,9 +15,13 @@ case class Vec2(val x: Float, val y: Float) {
 	}
 
 	def dot(other: Vec2) = x * other.x + y * other.y
-	def lengthSquared = x * x + y * y
-	def length = sqrt(lengthSquared)
-	def normalize = this / length
+
+	lazy val lengthSquared = x * x + y * y
+	lazy val length = sqrt(lengthSquared)
+	lazy val normalize = this / length
+
+	def project(onto: Vec2) =
+		onto * (dot(onto) / onto.lengthSquared)
 
 	def min(other: Vec2) =
 		Vec2(

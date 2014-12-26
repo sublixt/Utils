@@ -53,17 +53,17 @@ case class Mat3(val c0: Vec3, val c1: Vec3, val c2: Vec3) {
 			case _ => throw new IndexOutOfBoundsException("[Mat3](apply(int)): " + i.toString + " not in range [0, 2]")
 		}
 
-	def transpose =
+	lazy val transpose =
 		Mat3(
 			Vec3(c0.x, c1.x, c2.x),
 			Vec3(c0.y, c1.y, c2.y),
 			Vec3(c0.z, c1.z, c2.z))
 
-	def determinant =
+	lazy val determinant =
 		c0.x * c1.y * c2.z + c1.x * c2.y * c0.z + c2.x * c0.y * c1.z -
 			c0.z * c1.y * c2.x - c1.z * c2.y * c0.x - c2.z * c0.y * c1.x
 
-	def inverse = {
+	lazy val inverse = {
 		val d = determinant
 		Mat3(
 			Vec3((c2.z * c1.y - c1.z * c2.y) / d, -(c2.z * c0.y - c0.z * c2.y) / d, (c1.z * c0.y - c0.z * c1.y) / d),

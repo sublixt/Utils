@@ -6,6 +6,7 @@ object Vec3 {
 	def apply(vec: Vec4): Vec3 = vec.xyz
 	def apply(vec: Vec2, z: Float): Vec3 = Vec3(vec.x, vec.y, z)
 	def apply(x: Float, vec: Vec2): Vec3 = Vec3(x, vec.x, vec.y)
+	def apply(quat: Quat): Vec3 = quat.toEuler
 }
 
 case class Vec3(val x: Float, val y: Float, val z: Float) {
@@ -18,9 +19,13 @@ case class Vec3(val x: Float, val y: Float, val z: Float) {
 
 	def cross(other: Vec3) = Vec3(y * other.z - z * other.y, z * other.x - x * other.z, x * other.y - y * other.x)
 	def dot(other: Vec3) = x * other.x + y * other.y + z * other.z
-	def lengthSquared = x * x + y * y + z * z
-	def length = sqrt(lengthSquared)
-	def normalize = this / length
+	
+	lazy val lengthSquared = x * x + y * y + z * z
+	lazy val length = sqrt(lengthSquared)
+	lazy val normalize = this / length
+	
+	def project(onto: Vec3) =
+		onto * (dot(onto) / onto.lengthSquared)
 
 	def min(other: Vec3) =
 		Vec3(
@@ -74,6 +79,9 @@ case class Vec3(val x: Float, val y: Float, val z: Float) {
 			mat.c0.x * x + mat.c0.y * y + mat.c0.z * z,
 			mat.c1.x * x + mat.c1.y * y + mat.c1.z * z,
 			mat.c2.x * x + mat.c2.y * y + mat.c2.z * z)
+
+	def toRotationMatrix = Mat4(this)
+	def toQuat = Quat(this)
 
 	def xx = Vec2(x, x)
 	def xy = Vec2(x, y)
