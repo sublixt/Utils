@@ -1,5 +1,7 @@
 package sublixt.math
 
+import java.nio.FloatBuffer
+
 object Vec4 {
 	val zero = Vec4(0, 0, 0, 0)
 	def apply(): Vec4 = zero
@@ -87,6 +89,13 @@ case class Vec4(val x: Float, val y: Float, val z: Float, val w: Float) {
 			mat.c1.x * x + mat.c1.y * y + mat.c1.z * z + mat.c1.w * w,
 			mat.c2.x * x + mat.c2.y * y + mat.c2.z * z + mat.c2.w * w,
 			mat.c3.x * x + mat.c3.y * y + mat.c3.z * z + mat.c3.w * w)
+			
+	def store(buffer: FloatBuffer) {
+		buffer.put(x)
+		buffer.put(y)
+		buffer.put(z)
+		buffer.put(w)
+	}
 
 	def ww = Vec2(w, w)
 	def wx = Vec2(w, x)

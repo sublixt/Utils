@@ -1,10 +1,11 @@
 package sublixt
 
 package object math
-		extends MathConstants
-		with SquareRootFunctions
-		with TrigFunctions
-		with RoundingFunctions {
+	extends MathConstants
+	with SquareRootFunctions
+	with TrigFunctions
+	with RoundingFunctions
+	with RNGFunctions {
 
 	implicit class floatToScalar(val scalar: Float) extends AnyVal {
 		def *(vec: Vec2) = vec * scalar

@@ -1,5 +1,7 @@
 package sublixt.math
 
+import java.nio.FloatBuffer
+
 object Vec3 {
 	val zero = Vec3(0, 0, 0)
 	def apply(): Vec3 = zero
@@ -82,6 +84,12 @@ case class Vec3(val x: Float, val y: Float, val z: Float) {
 
 	def toRotationMatrix = Mat4(this)
 	def toQuat = Quat(this)
+	
+	def store(buffer: FloatBuffer) {
+		buffer.put(x)
+		buffer.put(y)
+		buffer.put(z)
+	}
 
 	def xx = Vec2(x, x)
 	def xy = Vec2(x, y)

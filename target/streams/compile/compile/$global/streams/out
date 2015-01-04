@@ -1,0 +1,167 @@
+[0m[[0mdebug[0m] [0m[0m
+[0m[[0mdebug[0m] [0mInitial source changes: [0m
+[0m[[0mdebug[0m] [0m	removed:Set()[0m
+[0m[[0mdebug[0m] [0m	added: Set(C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\RoundingFunctions.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Mat2.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\natives\NativeExtractor.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\SimplecticNoise.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\collection\immutable\AVLTree.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\RNGFunctions.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Random.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Hash.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\package.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\collection\mutable\ArrayQueue.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\collection\immutable\Tree.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\java\sublixt\math\OpenSimplexNoise.java, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\MathConstants.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Vec2.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\collection\mutable\Bag.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Quat.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Vec4.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Vec3.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\SquareRootFunctions.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\TrigFunctions.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Mat4.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Mat3.scala)[0m
+[0m[[0mdebug[0m] [0m	modified: Set()[0m
+[0m[[0mdebug[0m] [0mRemoved products: Set()[0m
+[0m[[0mdebug[0m] [0mExternal API changes: API Changes: Set()[0m
+[0m[[0mdebug[0m] [0mModified binary dependencies: Set()[0m
+[0m[[0mdebug[0m] [0mInitial directly invalidated sources: Set(C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\RoundingFunctions.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Mat2.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\natives\NativeExtractor.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\SimplecticNoise.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\collection\immutable\AVLTree.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\RNGFunctions.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Random.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Hash.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\package.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\collection\mutable\ArrayQueue.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\collection\immutable\Tree.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\java\sublixt\math\OpenSimplexNoise.java, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\MathConstants.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Vec2.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\collection\mutable\Bag.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Quat.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Vec4.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Vec3.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\SquareRootFunctions.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\TrigFunctions.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Mat4.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Mat3.scala)[0m
+[0m[[0mdebug[0m] [0m[0m
+[0m[[0mdebug[0m] [0mSources indirectly invalidated by:[0m
+[0m[[0mdebug[0m] [0m	product: Set()[0m
+[0m[[0mdebug[0m] [0m	binary dep: Set()[0m
+[0m[[0mdebug[0m] [0m	external source: Set()[0m
+[0m[[0mdebug[0m] [0mAll initially invalidated sources: Set(C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\RoundingFunctions.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Mat2.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\natives\NativeExtractor.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\SimplecticNoise.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\collection\immutable\AVLTree.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\RNGFunctions.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Random.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Hash.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\package.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\collection\mutable\ArrayQueue.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\collection\immutable\Tree.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\java\sublixt\math\OpenSimplexNoise.java, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\MathConstants.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Vec2.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\collection\mutable\Bag.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Quat.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Vec4.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Vec3.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\SquareRootFunctions.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\TrigFunctions.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Mat4.scala, C:\Users\Mark Reuter\Desktop\workspace\Utils\src\main\scala\sublixt\math\Mat3.scala)[0m
+[0m[[0mdebug[0m] [0mRecompiling all 22 sources: invalidated sources (22) exceeded 50.0% of all sources[0m
+[0m[[0minfo[0m] [0mCompiling 21 Scala sources and 1 Java source to C:\Users\Mark Reuter\Desktop\workspace\Utils\target\scala-2.11\classes...[0m
+[0m[[0mdebug[0m] [0mGetting compiler-interface from component compiler for Scala 2.11.4[0m
+[0m[[0mdebug[0m] [0mGetting compiler-interface from component compiler for Scala 2.11.4[0m
+[0m[[0mdebug[0m] [0mRunning cached compiler 6f8ff63d, interfacing (CompilerInterface) with Scala compiler version 2.11.4[0m
+[0m[[0mdebug[0m] [0mCalling Scala compiler with arguments  (CompilerInterface):[0m
+[0m[[0mdebug[0m] [0m	-bootclasspath[0m
+[0m[[0mdebug[0m] [0m	C:\Program Files\Java\jre1.8.0_25\lib\resources.jar;C:\Program Files\Java\jre1.8.0_25\lib\rt.jar;C:\Program Files\Java\jre1.8.0_25\lib\sunrsasign.jar;C:\Program Files\Java\jre1.8.0_25\lib\jsse.jar;C:\Program Files\Java\jre1.8.0_25\lib\jce.jar;C:\Program Files\Java\jre1.8.0_25\lib\charsets.jar;C:\Program Files\Java\jre1.8.0_25\lib\jfr.jar;C:\Program Files\Java\jre1.8.0_25\classes;C:\Users\Mark Reuter\.ivy2\cache\org.scala-lang\scala-library\jars\scala-library-2.11.4.jar[0m
+[0m[[0mdebug[0m] [0m	-classpath[0m
+[0m[[0mdebug[0m] [0m	C:\Users\Mark Reuter\Desktop\workspace\Utils\target\scala-2.11\classes[0m
+[0m[[0mdebug[0m] [0mScala compilation took 14.06300373 s[0m
+[0m[[0mdebug[0m] [0mAttempting to call javac directly...[0m
+[0m[[0mdebug[0m] [0mcom.sun.tools.javac.Main not found with appropriate method signature; forking javac instead[0m
+[0m[[0mdebug[0m] [0mForking javac: javac @C:/Users/MARKRE~1/AppData/Local/Temp/sbt_2efce6cd/argfile[0m
+java.io.IOException: Cannot run program "javac": CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at sbt.SimpleProcessBuilder.run(ProcessImpl.scala:349)
+	at sbt.AbstractProcessBuilder.run(ProcessImpl.scala:128)
+	at sbt.AbstractProcessBuilder$$anonfun$runBuffered$1.apply(ProcessImpl.scala:159)
+	at sbt.AbstractProcessBuilder$$anonfun$runBuffered$1.apply(ProcessImpl.scala:159)
+	at sbt.compiler.JavacLogger.buffer(AggressiveCompile.scala:235)
+	at sbt.AbstractProcessBuilder.runBuffered(ProcessImpl.scala:159)
+	at sbt.AbstractProcessBuilder.$bang(ProcessImpl.scala:156)
+	at sbt.compiler.AggressiveCompile$$anonfun$forkJavac$1.apply(AggressiveCompile.scala:214)
+	at sbt.compiler.AggressiveCompile$$anonfun$forkJavac$1.apply(AggressiveCompile.scala:209)
+	at sbt.compiler.JavaCompiler$$anonfun$forkJavac$1.sbt$compiler$JavaCompiler$$anonfun$$externalJavac$1(JavaCompiler.scala:96)
+	at sbt.compiler.JavaCompiler$$anonfun$forkJavac$1$$anonfun$apply$2.apply(JavaCompiler.scala:97)
+	at sbt.compiler.JavaCompiler$$anonfun$forkJavac$1$$anonfun$apply$2.apply(JavaCompiler.scala:97)
+	at sbt.compiler.JavaCompiler$$anonfun$withArgumentFile$1.apply(JavaCompiler.scala:117)
+	at sbt.compiler.JavaCompiler$$anonfun$withArgumentFile$1.apply(JavaCompiler.scala:114)
+	at sbt.IO$.withTemporaryDirectory(IO.scala:291)
+	at sbt.compiler.JavaCompiler$.withArgumentFile(JavaCompiler.scala:114)
+	at sbt.compiler.JavaCompiler$$anonfun$forkJavac$1.apply(JavaCompiler.scala:97)
+	at sbt.compiler.JavaCompiler$$anonfun$forkJavac$1.apply(JavaCompiler.scala:93)
+	at sbt.compiler.JavaCompiler$$anonfun$directOrForkJavac$1.apply(JavaCompiler.scala:89)
+	at sbt.compiler.JavaCompiler$$anonfun$directOrForkJavac$1.apply(JavaCompiler.scala:84)
+	at sbt.compiler.JavaCompiler$JavaTool0.compile(JavaCompiler.scala:70)
+	at sbt.compiler.JavaTool$class.apply(JavaCompiler.scala:32)
+	at sbt.compiler.JavaCompiler$JavaTool0.apply(JavaCompiler.scala:59)
+	at sbt.compiler.JavaCompiler$class.compile(JavaCompiler.scala:20)
+	at sbt.compiler.JavaCompiler$JavaTool0.compile(JavaCompiler.scala:59)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileJava$1$1.apply$mcV$sp(AggressiveCompile.scala:123)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileJava$1$1.apply(AggressiveCompile.scala:123)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileJava$1$1.apply(AggressiveCompile.scala:123)
+	at sbt.compiler.AggressiveCompile.sbt$compiler$AggressiveCompile$$timed(AggressiveCompile.scala:162)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.compileJava$1(AggressiveCompile.scala:122)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:139)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:86)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:38)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:36)
+	at sbt.inc.IncrementalCommon.cycle(IncrementalCommon.scala:31)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:39)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:38)
+	at sbt.inc.Incremental$.manageClassfiles(Incremental.scala:66)
+	at sbt.inc.Incremental$.compile(Incremental.scala:38)
+	at sbt.inc.IncrementalCompile$.apply(Compile.scala:26)
+	at sbt.compiler.AggressiveCompile.compile2(AggressiveCompile.scala:153)
+	at sbt.compiler.AggressiveCompile.compile1(AggressiveCompile.scala:70)
+	at sbt.compiler.AggressiveCompile.apply(AggressiveCompile.scala:45)
+	at sbt.Compiler$.apply(Compiler.scala:74)
+	at sbt.Compiler$.apply(Compiler.scala:65)
+	at sbt.Defaults$.sbt$Defaults$$compileTaskImpl(Defaults.scala:789)
+	at sbt.Defaults$$anonfun$compileTask$1.apply(Defaults.scala:781)
+	at sbt.Defaults$$anonfun$compileTask$1.apply(Defaults.scala:781)
+	at scala.Function1$$anonfun$compose$1.apply(Function1.scala:47)
+	at sbt.$tilde$greater$$anonfun$$u2219$1.apply(TypeFunctions.scala:40)
+	at sbt.std.Transform$$anon$4.work(System.scala:63)
+	at sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:226)
+	at sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:226)
+	at sbt.ErrorHandling$.wideConvert(ErrorHandling.scala:17)
+	at sbt.Execute.work(Execute.scala:235)
+	at sbt.Execute$$anonfun$submit$1.apply(Execute.scala:226)
+	at sbt.Execute$$anonfun$submit$1.apply(Execute.scala:226)
+	at sbt.ConcurrentRestrictions$$anon$4$$anonfun$1.apply(ConcurrentRestrictions.scala:159)
+	at sbt.CompletionService$$anon$2.call(CompletionService.scala:28)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.io.IOException: CreateProcess error=2, The system cannot find the file specified
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.lang.ProcessImpl.start(Unknown Source)
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at sbt.SimpleProcessBuilder.run(ProcessImpl.scala:349)
+	at sbt.AbstractProcessBuilder.run(ProcessImpl.scala:128)
+	at sbt.AbstractProcessBuilder$$anonfun$runBuffered$1.apply(ProcessImpl.scala:159)
+	at sbt.AbstractProcessBuilder$$anonfun$runBuffered$1.apply(ProcessImpl.scala:159)
+	at sbt.compiler.JavacLogger.buffer(AggressiveCompile.scala:235)
+	at sbt.AbstractProcessBuilder.runBuffered(ProcessImpl.scala:159)
+	at sbt.AbstractProcessBuilder.$bang(ProcessImpl.scala:156)
+	at sbt.compiler.AggressiveCompile$$anonfun$forkJavac$1.apply(AggressiveCompile.scala:214)
+	at sbt.compiler.AggressiveCompile$$anonfun$forkJavac$1.apply(AggressiveCompile.scala:209)
+	at sbt.compiler.JavaCompiler$$anonfun$forkJavac$1.sbt$compiler$JavaCompiler$$anonfun$$externalJavac$1(JavaCompiler.scala:96)
+	at sbt.compiler.JavaCompiler$$anonfun$forkJavac$1$$anonfun$apply$2.apply(JavaCompiler.scala:97)
+	at sbt.compiler.JavaCompiler$$anonfun$forkJavac$1$$anonfun$apply$2.apply(JavaCompiler.scala:97)
+	at sbt.compiler.JavaCompiler$$anonfun$withArgumentFile$1.apply(JavaCompiler.scala:117)
+	at sbt.compiler.JavaCompiler$$anonfun$withArgumentFile$1.apply(JavaCompiler.scala:114)
+	at sbt.IO$.withTemporaryDirectory(IO.scala:291)
+	at sbt.compiler.JavaCompiler$.withArgumentFile(JavaCompiler.scala:114)
+	at sbt.compiler.JavaCompiler$$anonfun$forkJavac$1.apply(JavaCompiler.scala:97)
+	at sbt.compiler.JavaCompiler$$anonfun$forkJavac$1.apply(JavaCompiler.scala:93)
+	at sbt.compiler.JavaCompiler$$anonfun$directOrForkJavac$1.apply(JavaCompiler.scala:89)
+	at sbt.compiler.JavaCompiler$$anonfun$directOrForkJavac$1.apply(JavaCompiler.scala:84)
+	at sbt.compiler.JavaCompiler$JavaTool0.compile(JavaCompiler.scala:70)
+	at sbt.compiler.JavaTool$class.apply(JavaCompiler.scala:32)
+	at sbt.compiler.JavaCompiler$JavaTool0.apply(JavaCompiler.scala:59)
+	at sbt.compiler.JavaCompiler$class.compile(JavaCompiler.scala:20)
+	at sbt.compiler.JavaCompiler$JavaTool0.compile(JavaCompiler.scala:59)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileJava$1$1.apply$mcV$sp(AggressiveCompile.scala:123)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileJava$1$1.apply(AggressiveCompile.scala:123)
+	at sbt.compiler.AggressiveCompile$$anonfun$3$$anonfun$compileJava$1$1.apply(AggressiveCompile.scala:123)
+	at sbt.compiler.AggressiveCompile.sbt$compiler$AggressiveCompile$$timed(AggressiveCompile.scala:162)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.compileJava$1(AggressiveCompile.scala:122)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:139)
+	at sbt.compiler.AggressiveCompile$$anonfun$3.apply(AggressiveCompile.scala:86)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:38)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:36)
+	at sbt.inc.IncrementalCommon.cycle(IncrementalCommon.scala:31)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:39)
+	at sbt.inc.Incremental$$anonfun$1.apply(Incremental.scala:38)
+	at sbt.inc.Incremental$.manageClassfiles(Incremental.scala:66)
+	at sbt.inc.Incremental$.compile(Incremental.scala:38)
+	at sbt.inc.IncrementalCompile$.apply(Compile.scala:26)
+	at sbt.compiler.AggressiveCompile.compile2(AggressiveCompile.scala:153)
+	at sbt.compiler.AggressiveCompile.compile1(AggressiveCompile.scala:70)
+	at sbt.compiler.AggressiveCompile.apply(AggressiveCompile.scala:45)
+	at sbt.Compiler$.apply(Compiler.scala:74)
+	at sbt.Compiler$.apply(Compiler.scala:65)
+	at sbt.Defaults$.sbt$Defaults$$compileTaskImpl(Defaults.scala:789)
+	at sbt.Defaults$$anonfun$compileTask$1.apply(Defaults.scala:781)
+	at sbt.Defaults$$anonfun$compileTask$1.apply(Defaults.scala:781)
+	at scala.Function1$$anonfun$compose$1.apply(Function1.scala:47)
+	at sbt.$tilde$greater$$anonfun$$u2219$1.apply(TypeFunctions.scala:40)
+	at sbt.std.Transform$$anon$4.work(System.scala:63)
+	at sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:226)
+	at sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:226)
+	at sbt.ErrorHandling$.wideConvert(ErrorHandling.scala:17)
+	at sbt.Execute.work(Execute.scala:235)
+	at sbt.Execute$$anonfun$submit$1.apply(Execute.scala:226)
+	at sbt.Execute$$anonfun$submit$1.apply(Execute.scala:226)
+	at sbt.ConcurrentRestrictions$$anon$4$$anonfun$1.apply(ConcurrentRestrictions.scala:159)
+	at sbt.CompletionService$$anon$2.call(CompletionService.scala:28)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+[0m[[31merror[0m] [0m(compile:[31mcompile[0m) java.io.IOException: Cannot run program "javac": CreateProcess error=2, The system cannot find the file specified[0m
