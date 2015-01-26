@@ -4,3 +4,8 @@ compile
 exit
 compile
 last compile:compile
+clean
+eclipse
+set scalacOptions in ThisBuild ++= Seq("-feature")
+comiple
+compile

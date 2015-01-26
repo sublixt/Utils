@@ -1,12 +1,14 @@
 package sublixt.math
 
+import java.nio.FloatBuffer
+
 object Mat3 {
 	val identity =
 		Mat3(
 			Vec3(1, 0, 0),
 			Vec3(0, 1, 0),
 			Vec3(0, 0, 1))
-			
+
 	val zero = Mat3(Vec3(), Vec3(), Vec3())
 
 	def apply(mat: Mat2): Mat3 = Mat3(Vec3(mat.c0, 0), Vec3(mat.c1, 0), Vec3(0, 0, 1))
@@ -69,5 +71,11 @@ case class Mat3(val c0: Vec3, val c1: Vec3, val c2: Vec3) {
 			Vec3((c2.z * c1.y - c1.z * c2.y) / d, -(c2.z * c0.y - c0.z * c2.y) / d, (c1.z * c0.y - c0.z * c1.y) / d),
 			Vec3(-(c2.z * c1.x - c1.z * c2.x) / d, (c2.z * c0.x - c0.z * c2.x) / d, -(c1.z * c0.x - c0.z * c1.x) / d),
 			Vec3((c2.y * c1.x - c1.y * c2.x) / d, -(c2.y * c0.x - c0.y * c2.x) / d, (c1.y * c0.x - c0.y * c1.x) / d))
+	}
+
+	def store(buffer: FloatBuffer) {
+		c0.store(buffer)
+		c1.store(buffer)
+		c2.store(buffer)
 	}
 }

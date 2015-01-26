@@ -1,5 +1,7 @@
 package sublixt.math
 
+import java.nio.FloatBuffer
+
 object Mat4 {
 	val identity =
 		Mat4(
@@ -91,10 +93,10 @@ object Mat4 {
 		val cb = cos(bank)
 		val sh = sin(heading)
 		val ch = cos(heading)
-		
+
 		val shsa = sh * sa
 		val chsa = ch * sa
-		
+
 		Mat4(
 			Vec4(ch * ca, sa, -sh * ca, 0),
 			Vec4(-chsa * cb + sh * sb, ca * cb, shsa * cb + ch * sb, 0),
@@ -248,4 +250,11 @@ case class Mat4(val c0: Vec4, val c1: Vec4, val c2: Vec4, val c3: Vec4) {
 			c3)
 
 	def scale(vec: Vec3): Mat4 = scale(vec.x, vec.y, vec.z)
+
+	def store(buffer: FloatBuffer) {
+		c0.store(buffer)
+		c1.store(buffer)
+		c2.store(buffer)
+		c3.store(buffer)
+	}
 }

@@ -1,11 +1,13 @@
 package sublixt.math
 
+import java.nio.FloatBuffer
+
 object Mat2 {
 	val identity =
 		Mat2(
 			Vec2(1, 0),
 			Vec2(0, 1))
-			
+
 	val zero = Mat2(Vec2(), Vec2())
 
 	def apply(mat: Mat3): Mat2 = Mat2(mat.c0.xy, mat.c1.xy)
@@ -19,7 +21,7 @@ case class Mat2(val c0: Vec2, val c1: Vec2) {
 	def -(scalar: Float) = Mat2(c0 - scalar, c1 - scalar)
 	def *(scalar: Float) = Mat2(c0 * scalar, c1 * scalar)
 	def /(scalar: Float) = Mat2(c0 / scalar, c1 / scalar)
-	
+
 	def +(other: Mat2) = Mat2(c0 + other.c0, c1 + other.c1)
 	def -(other: Mat2) = Mat2(c0 - other.c0, c1 - other.c1)
 
@@ -48,12 +50,17 @@ case class Mat2(val c0: Vec2, val c1: Vec2) {
 		Mat2(
 			Vec2(c0.x, c1.x),
 			Vec2(c0.y, c1.y))
-	
+
 	lazy val determinant =
 		c0.x * c1.y - c0.y * c1.x
-		
+
 	lazy val inverse = {
 		val d = determinant
 		Mat2(Vec2(c1.y / d, -c0.y / d), Vec2(-c1.x / d, c0.x / d))
+	}
+
+	def store(buffer: FloatBuffer) {
+		c0.store(buffer)
+		c1.store(buffer)
 	}
 }
