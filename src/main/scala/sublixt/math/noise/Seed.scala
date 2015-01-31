@@ -42,7 +42,7 @@ class Seed private (private val values: Array[Short]) {
 			values(swap_i) = values(i)
 			values(i) = swap
 
-			rng = prng(seed)
+			rng = prng(rng)
 			i += 1
 		}
 	}

@@ -52,6 +52,61 @@ private[math] trait RoundingFunctions {
 }
 
 object Main extends App {
+	/*def floor1(x: Float) = {
+		val bits = floatToIntBits(x)
+
+		val sign = bits >> 31
+		val signBit = sign & 0x1
+		val exponent = bits >>> 23
+		val exponent23 = (22 - exponent) & 0x7F
+		val magnitude = (bits & 0x7FFFFF) | 0x800000
+
+		val characteristic = magnitude >>> exponent23
+		val characteristicShifted = characteristic << exponent23
+		val mantissa = magnitude ^ characteristicShifted
+		val preTest = (characteristicShifted - mantissa) >>> exponent23
+		val integerTest = (characteristic ^ preTest) & signBit
+
+		val twosComp = (characteristic ^ sign) - sign
+		twosComp - integerTest
+	}
+
+	def floor2(x: Float) = {
+		val xi = x.toInt
+		if (x < xi) xi - 1 else xi
+	}
+
+	val values = (-1000000 until 1000000).map(_ / 10000.0f).toArray
+
+	locally {
+		var rng = xorShift(0)
+		rng = xorShift(rng)
+		rng = xorShift(rng)
+
+		var i = 0
+		while (i < 2000000) {
+			val swap_i = (rng & 2000000).toInt
+			val swap = values(swap_i)
+			values(swap_i) = values(i)
+			values(i) = swap
+
+			rng = xorShift(rng)
+			i += 1
+		}
+	}
+
+	System.gc()
+
+	val start = System.nanoTime
+	var c = 0
+	while (c < 2000000) {
+		floor2(values(c))
+		c += 1
+	}
+	val end = System.nanoTime
+
+	println((end - start) / 1000000.0f)*/
+
 	def printBits(x: Int) {
 		for (i <- 31 to 0 by -1) {
 			print((x >>> i) & 0x1)
@@ -94,33 +149,63 @@ object Main extends App {
 	}
 
 	//this works, but probably not faster
-	//I can see why floating point calculations are slow
+	//Unexpected results at -infinity, infinity, NaN
 	def ffloor(x: Float) = {
 		val bits = floatToIntBits(x)
 
 		// seperate the float into:
-		//	* sign
-		//	* exponent
-		//	* mantissa
-		val signBit = bits >>> 31 // I need this to seperate the positive and negative
+		//	* sign - 1 bit
+		//	* exponent - 8 bits
+		//	* mantissa - 23 bits (24 with implicit 1)
 		val sign = bits >> 31 // I need this for 2's complement
-		val exp = ((bits >>> 23) & 0xFF) // I need this to cut out the decimal points
-		val exp23 = 23 - (exp - 127) // (< 0) floating point overflow, (<= 23) |x| >= 1, (> 23) |x| < 1
-		val mag = (bits & 0x7fffff) | 0x800000 // the fraction of the number with the implicit one added
+		val signBit = sign & 0x1 // I need this to seperate the positive and negative
+		//val exp = ((bits >>> 23) & 0xFF) // I need this to cut out the decimal points
+		val exponent = bits >>> 23 // the 0xFF is probably unnecessary. it seems to work without it due to & 0x7f in exp23
+		//val exp23 = 23 - (exp - 127) // (< 0) floating point overflow, (<= 23) |x| >= 1, (> 23) |x| < 1
+		val exponent23 = (22 - exponent) & 0x7F // (< 0) doesnt happen, (0 <= exp <= 23) |x| >= 1, (> 23) |x| < 1 or unexpected behavior
+		val magnitude = (bits & 0x7FFFFF) | 0x800000 // the fraction of the number with the implicit one added
 
-		val stripped = mag >>> exp23 // the whole number portion of x. = floor(abs(x))
+		val characteristic = magnitude >>> exponent23 // the whole number portion of x. = floor(abs(x))
 
-		// these next three lines separate out the real numbers from integers
-		val magComp = stripped << exp23 // if it's a whole number this should equal mag
-		val comp = mag ^ magComp // the decimal portion of x. 0 if integer
-		val something = (magComp - comp) >>> exp23 // (integer) floor(abs(x)), (real) floor(abs(x)) - 1
+		// these next four lines separate out the real numbers from integers
+		val characteristicShifted = characteristic << exponent23 // if it's a whole number this should equal mag
+		val mantissa = magnitude ^ characteristicShifted // the decimal portion of x. 0 if integer
+		val preTest = (characteristicShifted - mantissa) >>> exponent23 // (integer) floor(abs(x)), (real) floor(abs(x)) - 1
+		val integerTest = (characteristic ^ preTest) & signBit // (negative and real) 1, (positive or integer) 0
 
-		val twosComp = (stripped ^ sign) - sign // gets the number back to the initial sign
-		val diff = (stripped ^ something) & signBit // (negative and real) 1, (positive or integer) 0
-		twosComp - diff
+		val twosComp = (characteristic ^ sign) - sign // gets the number back to the initial sign
+		twosComp - integerTest
 	}
 
-	println(ffloor(1.5f))
+	def ffloor1(x: Float) = {
+		val bits = floatToIntBits(x)
+
+		val sign = bits >> 31
+		val exponent = bits >>> 23
+		val exponent23 = (22 - exponent) & 0x7F
+		val magnitude = (bits & 0x7FFFFF) | 0x800000
+
+		val mask = (-1) << exponent23
+		val characteristic = magnitude & mask
+		val mantissa = magnitude - characteristic
+		val cmm = (characteristic - mantissa) & mask
+		val integerTest = ((characteristic - cmm) >>> exponent23) & sign
+
+		/*val characteristic = magnitude >>> exponent23
+		val characteristicShifted = characteristic << exponent23
+		val mantissa = magnitude ^ characteristicShifted
+		val preTest = (characteristicShifted - mantissa) >>> exponent23
+		val integerTest = (characteristic ^ preTest) & signBit*/
+
+		val twosComp = (characteristic ^ sign) - sign
+		twosComp - integerTest
+	}
+
+	println(ffloor1(1.5f))
+
+	/*for (i <- (127 - 24) to (127 + 24)) {
+		println(i, (22 - i) & 0x7f)
+	}*/
 
 	def fastRoundf(x: Float) = {
 		val bits = floatToIntBits(x)

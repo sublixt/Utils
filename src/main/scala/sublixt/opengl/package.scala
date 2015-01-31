@@ -5,6 +5,16 @@ import org.lwjgl.BufferUtils
 
 package sublixt {
 	package object opengl extends Implicits {
+		implicit final class GLBindOps[A](val obj: A)(implicit val bind: GLBind[A]) {
+			def foreach(f: Unit => Unit) {
+				bind.bind(obj)
+				bind.bound = obj
+				f(())
+				bind.bound = null.asInstanceOf[A]
+				bind.unbind()
+			}
+		}
+
 		private[opengl] val errorStack = new ArrayStack[Throwable]()
 		private[opengl] val floatBuffer = BufferUtils.createFloatBuffer(16)
 

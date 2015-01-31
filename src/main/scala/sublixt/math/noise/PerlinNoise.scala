@@ -23,6 +23,7 @@ import Gradient._
 
 class PerlinNoise(val seed: Seed) {
 	def perlin(x: Double, y: Double) = {
+			@inline
 			def gradient(wx: Int, wy: Int, fx: Double, fy: Double) = {
 				val attn = 1.0 - (fx * fx + fy * fy)
 				if (attn > 0.0) {
@@ -52,6 +53,7 @@ class PerlinNoise(val seed: Seed) {
 	}
 
 	def perlin(x: Double, y: Double, z: Double) = {
+			@inline
 			def gradient(wx: Int, wy: Int, wz: Int, fx: Double, fy: Double, fz: Double) = {
 				val attn = 1.0 - (fx * fx + fy * fy + fz * fz)
 				if (attn > 0.0) {
@@ -91,6 +93,7 @@ class PerlinNoise(val seed: Seed) {
 	}
 
 	def perlin(x: Double, y: Double, z: Double, w: Double) = {
+			@inline
 			def gradient(wx: Int, wy: Int, wz: Int, ww: Int, fx: Double, fy: Double, fz: Double, fw: Double) = {
 				val attn = 1.0 - (fx * fx + fy * fy + fz * fz + fw * fw)
 				if (attn > 0.0) {
