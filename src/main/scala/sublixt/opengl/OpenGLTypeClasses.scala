@@ -26,7 +26,7 @@ trait GLGet[A, @specialized(Int) B, @specialized(Boolean, Int) C] {
 	def get(a: A, b: B): C
 }
 
-trait GLParameter[A, B, C] {
+trait GLParameter[A, @specialized(Int) B, @specialized(Int) C] {
 	def parameter(a: A, b: B, c: C)
 }
 

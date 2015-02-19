@@ -6,12 +6,13 @@ import org.lwjgl.opengl.GL20
 object ShaderProgramImpl
 		extends GLGen[ShaderProgram] with GLDelete[ShaderProgram]
 		with GLBind[ShaderProgram] with GLInfoLog[ShaderProgram]
-		with GLCompile[ShaderProgram] {
+		with GLCompile[ShaderProgram] with GLGet[ShaderProgram, TFStatus, Boolean] {
 
 	def gen() = new ShaderProgram(GL20.glCreateProgram())
 	def delete(obj: ShaderProgram) = GL20.glDeleteProgram(obj.id)
 	def unbind() = GL20.glUseProgram(0)
 	def infoLog(obj: ShaderProgram) = GL20.glGetProgramInfoLog(obj.id)
+	def get(program: ShaderProgram, pname: TFStatus): Boolean = GL20.glGetProgrami(program.id, pname.id) == GL_TRUE
 
 	def bind(obj: ShaderProgram): GLBind[ShaderProgram] = {
 		GL20.glUseProgram(obj.id)

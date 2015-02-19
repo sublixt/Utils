@@ -227,6 +227,8 @@ case class Mat4(val c0: Vec4, val c1: Vec4, val c2: Vec4, val c3: Vec4) {
 			c3)
 	}
 
+	//TODO implement the 3 in 1 rotation method...
+
 	def translate(x: Float, y: Float, z: Float): Mat4 =
 		Mat4(c0, c1, c2,
 			Vec4(

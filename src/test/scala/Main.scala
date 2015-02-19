@@ -1,11 +1,6 @@
 import org.lwjgl._
 import glfw.GLFW._
 import opengl._
-import GL11._
-import GL14._
-import GL15._
-import GL20._
-import GL30._
 import sublixt.natives.NativeExtractor
 import java.io.File
 import sublixt.math._
@@ -57,13 +52,13 @@ object Main extends App {
 		buffer.put(array)
 		buffer.flip()
 
-		glBufferData(GL_ARRAY_BUFFER, buffer, GL_STATIC_DRAW)
+		glBufferData(buffer, GL_STATIC_DRAW)
 	}
 
 	glEnableVertexAttribArray(0)
 	glEnableVertexAttribArray(1)
-	glVertexAttribPointer(0, 4, GL_FLOAT, false, 24, 0)
-	glVertexAttribPointer(1, 2, GL_FLOAT, false, 24, 16)
+	glVertexAttribPointer(0, 4, 6, 0)
+	glVertexAttribPointer(1, 2, 6, 4)
 
 	glBind(ibo)
 	locally {
@@ -74,56 +69,55 @@ object Main extends App {
 		buffer.put(array)
 		buffer.flip()
 
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, buffer, GL_STATIC_DRAW)
+		glBufferData(buffer, GL_STATIC_DRAW)
 	}
 	glUnbind[VAO]
 
 	def readSource(file: String) =
 		Source.fromInputStream(getClass.getResourceAsStream(file)).getLines.mkString("\n")
 
-	val frag = glCreateShader(GL_FRAGMENT_SHADER)
-	val vert = glCreateShader(GL_VERTEX_SHADER)
-	val program = glCreateProgram()
+	val frag = glGen[FragmentShader]
+	val vert = glGen[VertexShader]
+	val program = glGen[ShaderProgram]
 
 	val fragSource = readSource("frag.frag")
 	val vertSource = readSource("vert.vert")
-	glShaderSource(frag, fragSource)
-	glShaderSource(vert, vertSource)
+	glAttach(frag, fragSource)
+	glAttach(vert, vertSource)
 
 	println(vertSource)
 	println(fragSource)
 
-	glCompileShader(frag)
-	glCompileShader(vert)
+	glCompile(frag)
+	glCompile(vert)
 
-	println("Compile Status: " + (glGetShaderi(vert, GL_COMPILE_STATUS) == GL_TRUE))
-	println("Compile Status: " + (glGetShaderi(frag, GL_COMPILE_STATUS) == GL_TRUE))
-	println(glGetShaderInfoLog(vert))
-	println(glGetShaderInfoLog(frag))
+	println("Compile Status: " + glGet(vert, GL_COMPILE_STATUS))
+	println("Compile Status: " + glGet(frag, GL_COMPILE_STATUS))
+	println(glInfoLog(vert))
+	println(glInfoLog(frag))
 
-	glAttachShader(program, vert)
-	glAttachShader(program, frag)
+	glAttach(program, vert)
+	glAttach(program, frag)
 
-	glLinkProgram(program)
-	glValidateProgram(program)
+	glCompile(program)
 
-	println("Link Status: " + (glGetProgrami(program, GL_LINK_STATUS) == GL_TRUE))
-	println("Validate Status: " + (glGetProgrami(program, GL_VALIDATE_STATUS) == GL_TRUE))
-	println(glGetProgramInfoLog(program))
+	println("Link Status: " + glGet(program, GL_LINK_STATUS))
+	println("Validate Status: " + glGet(program, GL_VALIDATE_STATUS))
+	println(glInfoLog(program))
 
-	val tex = glGenTextures()
+	val tex = glGen[Tex2D]
 	locally {
 		val image = ImageIO.read(getClass.getResourceAsStream("crate.jpg"))
 		val buffer = BufferUtils.createByteBuffer(image.getWidth * image.getHeight * 4)
 		buffer.put(image)
 		buffer.flip()
 
-		glBindTexture(GL_TEXTURE_2D, tex)
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image.getWidth, image.getHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer)
+		glBind(tex)
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, image.getWidth, image.getHeight, GL_RGBA, buffer)
 
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
-		glBindTexture(GL_TEXTURE_2D, 0)
+		glParameter(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
+		glParameter(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
+		glUnbind[Tex2D]
 	}
 
 	val mat = Mat4.translate(0f, 0f, -3f)
@@ -148,20 +142,20 @@ object Main extends App {
 		val delta = lastTime - currentTime
 		lastTime = currentTime
 
-		glUseProgram(program)
-
 		rot += delta * 10 * degToRad * 0.005f
 		buffer.put(mat.roty(rot).rotx(rot).rotz(rot))
 		buffer.flip
 
-		glUniformMatrix4(loc, false, buffer)
-		glUniformMatrix4(loc2, false, buffer2)
-		glBindTexture(GL_TEXTURE_2D, tex)
-		glBind(vao)
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0)
-		glUnbind[VAO]
-		glBindTexture(GL_TEXTURE_2D, 0)
-		glUseProgram(0)
+		for {
+			_ <- glBind(program)
+			_ <- glBind(tex)
+			_ <- glBind(vao)
+		} {
+			glUniformMatrix4(loc, buffer)
+			glUniformMatrix4(loc2, buffer2)
+
+			glDrawElements(GL_TRIANGLES, 6, 0)
+		}
 
 		glfwSwapBuffers(id)
 		glfwPollEvents()
