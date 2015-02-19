@@ -9,3 +9,5 @@ eclipse
 set scalacOptions in ThisBuild ++= Seq("-feature")
 comiple
 compile
+eclispe
+eclipse

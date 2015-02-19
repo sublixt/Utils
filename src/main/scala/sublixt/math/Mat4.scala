@@ -3,12 +3,13 @@ package sublixt.math
 import java.nio.FloatBuffer
 
 object Mat4 {
+	private val ic0 = Vec4(1, 0, 0, 0)
+	private val ic1 = Vec4(0, 1, 0, 0)
+	private val ic2 = Vec4(0, 0, 1, 0)
+	private val ic3 = Vec4(0, 0, 0, 1)
+
 	val identity =
-		Mat4(
-			Vec4(1, 0, 0, 0),
-			Vec4(0, 1, 0, 0),
-			Vec4(0, 0, 1, 0),
-			Vec4(0, 0, 0, 1))
+		Mat4(ic0, ic1, ic2, ic3)
 
 	val zero = Mat4(Vec4(), Vec4(), Vec4(), Vec4())
 
@@ -29,27 +30,20 @@ object Mat4 {
 			Vec4(-((right + left) / (rml)), -((top + bottom) / (tmb)), -((far + near) / fmn), 1))
 	}
 
-	def frustum(left: Float, right: Float, bottom: Float, top: Float, near: Float, far: Float): Mat4 = {
-		val nearX2 = near * 2
-		val rml = right - left
-		val tmb = top - bottom
+	def perspective(fov: Float, aspect: Float, near: Float, far: Float): Mat4 = {
+		val f = cot(fov / 2f)
 		val fmn = far - near
 
 		Mat4(
-			Vec4(nearX2 / rml, 0, 0, 0),
-			Vec4(0, nearX2 / tmb, 0, 0),
-			Vec4((right + left) / rml, (top + bottom) / tmb, (-far - near) / fmn, -1),
-			Vec4(0, 0, (-nearX2 * far) / fmn, 0))
-	}
-
-	def perspective(fov: Float, aspectRatio: Float, near: Float, far: Float): Mat4 = {
-		val ymax = near * tan(fov / 2)
-		val xmax = ymax * aspectRatio
-		frustum(-xmax, xmax, -ymax, ymax, near, far)
+			Vec4(f / aspect, 0, 0, 0),
+			Vec4(0, f, 0, 0),
+			Vec4(0, 0, (far + near) / fmn, -1),
+			Vec4(0, 0, (-2 * far * near) / fmn, 0)
+		)
 	}
 
 	def translate(x: Float, y: Float, z: Float): Mat4 =
-		Mat4(Vec4(1, 0, 0, x), Vec4(0, 1, 0, y), Vec4(0, 0, 1, z), Vec4(0, 0, 0, 1))
+		Mat4(ic0, ic1, ic2, Vec4(x, y, z, 1))
 	def translate(vec: Vec3): Mat4 =
 		translate(vec.x, vec.y, vec.z)
 
@@ -101,7 +95,7 @@ object Mat4 {
 			Vec4(ch * ca, sa, -sh * ca, 0),
 			Vec4(-chsa * cb + sh * sb, ca * cb, shsa * cb + ch * sb, 0),
 			Vec4(chsa * sb + sh * cb, -ca * sb, -shsa * sb + ch * cb, 0),
-			Vec4(0, 0, 0, 1))
+			ic3)
 	}
 
 	def rot(vec: Vec3): Mat4 =
@@ -234,11 +228,12 @@ case class Mat4(val c0: Vec4, val c1: Vec4, val c2: Vec4, val c3: Vec4) {
 	}
 
 	def translate(x: Float, y: Float, z: Float): Mat4 =
-		Mat4(
-			Vec4(c0.x + c3.x * x, c0.y + c3.y * x, c0.z + c3.z * x, c0.w + c3.w * x),
-			Vec4(c1.x + c3.x * y, c1.y + c3.y * y, c1.z + c3.z * y, c1.w + c3.w * y),
-			Vec4(c2.x + c3.x * z, c2.y + c3.y * z, c2.z + c3.z * z, c2.w + c3.w * z),
-			c3)
+		Mat4(c0, c1, c2,
+			Vec4(
+				c0.x * x + c1.x * y + c2.x * z + c3.x,
+				c0.y * x + c1.y * y + c2.y * z + c3.y,
+				c0.z * x + c1.z * y + c2.z * z + c3.z,
+				c0.w * x + c1.w * y + c2.w * z + c3.w))
 
 	def translate(vec: Vec3): Mat4 = translate(vec.x, vec.y, vec.z)
 
@@ -250,11 +245,4 @@ case class Mat4(val c0: Vec4, val c1: Vec4, val c2: Vec4, val c3: Vec4) {
 			c3)
 
 	def scale(vec: Vec3): Mat4 = scale(vec.x, vec.y, vec.z)
-
-	def store(buffer: FloatBuffer) {
-		c0.store(buffer)
-		c1.store(buffer)
-		c2.store(buffer)
-		c3.store(buffer)
-	}
 }

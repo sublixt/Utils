@@ -4,9 +4,9 @@ import scala.reflect.ClassTag
 
 /* A rough first pass of my bag class.
  * O(1) for Indexing, Insertion, and Deletion as long as order doesnt matter
- * 
+ *
  * */
-class Bag[@specialized(Int, Float, Short) T] private[mutable] (private var buffer: Array[T], private var p: Int)(implicit private val tag: ClassTag[T]) {
+class Bag[T] private[mutable] (private var buffer: Array[T], private var p: Int)(implicit private val tag: ClassTag[T]) {
 	def this(initialLength: Int)(implicit tag: ClassTag[T]) {
 		this(new Array[T](initialLength), 0)
 	}
@@ -29,7 +29,7 @@ class Bag[@specialized(Int, Float, Short) T] private[mutable] (private var buffe
 			i += 1
 		}
 	}
-	
+
 	def map[B](f: T => B)(implicit tag: ClassTag[B]) = {
 		val temp = new Array[B](capacity)
 		var i = 0
@@ -37,7 +37,7 @@ class Bag[@specialized(Int, Float, Short) T] private[mutable] (private var buffe
 			temp(i) = f(buffer(i))
 			i += 1
 		}
-		
+
 		new Bag(temp, p)
 	}
 
@@ -70,7 +70,7 @@ class Bag[@specialized(Int, Float, Short) T] private[mutable] (private var buffe
 			p += 1
 		}
 	}
-	
+
 	def insert(index: Int, t: T) {
 		if (p == buffer.length) {
 			grow()

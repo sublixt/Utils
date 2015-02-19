@@ -3,7 +3,7 @@ package sublixt.collection.mutable
 import scala.reflect.ClassTag
 import java.util.ArrayList
 
-class ArrayQueue[@specialized(Int, Float, Short) T] private[mutable] (private var buffer: Array[T], private var h: Int, private var p: Int)(private implicit val tag: ClassTag[T]) {
+class ArrayQueue[T] private[mutable] (private var buffer: Array[T], private var h: Int, private var p: Int)(private implicit val tag: ClassTag[T]) {
 	def this(initialLength: Int)(implicit tag: ClassTag[T]) {
 		this(new Array[T](initialLength), 0, 0)
 		require(initialLength >= 0)
@@ -15,7 +15,7 @@ class ArrayQueue[@specialized(Int, Float, Short) T] private[mutable] (private va
 
 	@inline def isEmpty = h == p
 	@inline def capacity = buffer.length
-	@inline def length = sublixt.math.abs(h - p) // eventually change this to my math library
+	@inline def length = sublixt.math.abs(h - p)
 
 	def +=(t: T) {
 		buffer(p) = t

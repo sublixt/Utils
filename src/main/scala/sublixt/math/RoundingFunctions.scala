@@ -4,55 +4,55 @@ import java.lang.Float._
 import java.lang.Double._
 
 private[math] trait RoundingFunctions {
-	def floor(x: Float) = {
+	final def floor(x: Float) = {
 		val xi = x.toInt
 		if (x < xi) xi - 1 else xi
 	}
 
-	def floor(x: Double) = {
+	final def floor(x: Double) = {
 		val xi = x.toLong
 		if (x < xi) xi - 1 else xi
 	}
 
-	def ceil(x: Float) = {
+	final def ceil(x: Float) = {
 		val x1 = x.toInt
 		if (x > x1) x1 + 1 else x1
 	}
 
-	def ceil(x: Double) = {
+	final def ceil(x: Double) = {
 		val x1 = x.toLong
 		if (x > x1) x1 + 1 else x1
 	}
 
-	def round(x: Float) =
+	final def round(x: Float) =
 		floor(x + 0.5f)
 
-	def round(x: Double) =
+	final def round(x: Double) =
 		floor(x + 0.5)
 
-	def abs(x: Float) = {
+	final def abs(x: Float) = {
 		val i = floatToIntBits(x) & 0x7FFFFFFF
 		intBitsToFloat(i)
 	}
 
-	def abs(x: Int) = {
+	final def abs(x: Int) = {
 		val y = x >> 31
 		(x ^ y) - y // twos complement when negative
 	}
 
-	def abs(x: Double) = {
+	final def abs(x: Double) = {
 		val l = doubleToLongBits(x) & 0x7FFFFFFFFFFFFFFFL
 		longBitsToDouble(l)
 	}
 
-	def abs(x: Long) = {
+	final def abs(x: Long) = {
 		val y = x >> 63
 		(x ^ y) - y
 	}
 }
 
-object Main extends App {
-	/*def floor1(x: Float) = {
+/*object Main extends App {
+	def floor1(x: Float) = {
 		val bits = floatToIntBits(x)
 
 		val sign = bits >> 31
@@ -76,16 +76,46 @@ object Main extends App {
 		if (x < xi) xi - 1 else xi
 	}
 
+	def floor3(x: Float) = {
+		//most promising so far
+		//but still slower than the comparison
+		//also has problems with numbers that have a really small and really large exponent
+		val bits = floatToIntBits(x)
+
+		val sign = bits >> 31
+		val exponent = (22 - (bits >>> 23)) & 0x7F // Magic
+		val magnitude = (bits & 0x7FFFFF) | 0x800000
+
+		val characteristic = magnitude >>> exponent
+		val twosComp = (characteristic ^ sign) - sign
+
+		val mantissa = magnitude << (32 - exponent)
+		val realTest = ((0 - mantissa) & sign) >>> 31
+
+		twosComp - realTest
+
+		(((magnitude >>> exponent) ^ sign) - sign) -
+			(((0 - (magnitude << (32 - exponent))) & sign) >>> 31)
+	}
+
+	val BIG_ENOUGH_INT = 16 * 1024
+	val BIG_ENOUGH_FLOOR = BIG_ENOUGH_INT
+	val BIG_ENOUGH_ROUND = BIG_ENOUGH_INT + 0.5
+
+	def floor4(x: Float) = {
+		(x + BIG_ENOUGH_FLOOR).toInt - BIG_ENOUGH_INT
+	}
+
 	val values = (-1000000 until 1000000).map(_ / 10000.0f).toArray
 
 	locally {
-		var rng = xorShift(0)
+		var rng = xorShift(-1)
 		rng = xorShift(rng)
 		rng = xorShift(rng)
 
 		var i = 0
 		while (i < 2000000) {
-			val swap_i = (rng & 2000000).toInt
+			val swap_i = (rng & (2000000 - 1)).toInt
 			val swap = values(swap_i)
 			values(swap_i) = values(i)
 			values(i) = swap
@@ -100,15 +130,25 @@ object Main extends App {
 	val start = System.nanoTime
 	var c = 0
 	while (c < 2000000) {
-		floor2(values(c))
+		floor4(values(c))
 		c += 1
 	}
 	val end = System.nanoTime
 
-	println((end - start) / 1000000.0f)*/
+	println((end - start) / 1000000.0f)
+
+	println(floor3(0.00000000042f))
 
 	def printBits(x: Int) {
 		for (i <- 31 to 0 by -1) {
+			print((x >>> i) & 0x1)
+			if (i % 4 == 0) print(' ')
+		}
+		println
+	}
+
+	def printBits(x: Byte) {
+		for (i <- 7 to 0 by -1) {
 			print((x >>> i) & 0x1)
 			if (i % 4 == 0) print(' ')
 		}
@@ -177,35 +217,11 @@ object Main extends App {
 		twosComp - integerTest
 	}
 
-	def ffloor1(x: Float) = {
-		val bits = floatToIntBits(x)
+	//println(ffloor1(8388608.5f))
 
-		val sign = bits >> 31
-		val exponent = bits >>> 23
-		val exponent23 = (22 - exponent) & 0x7F
-		val magnitude = (bits & 0x7FFFFF) | 0x800000
-
-		val mask = (-1) << exponent23
-		val characteristic = magnitude & mask
-		val mantissa = magnitude - characteristic
-		val cmm = (characteristic - mantissa) & mask
-		val integerTest = ((characteristic - cmm) >>> exponent23) & sign
-
-		/*val characteristic = magnitude >>> exponent23
-		val characteristicShifted = characteristic << exponent23
-		val mantissa = magnitude ^ characteristicShifted
-		val preTest = (characteristicShifted - mantissa) >>> exponent23
-		val integerTest = (characteristic ^ preTest) & signBit*/
-
-		val twosComp = (characteristic ^ sign) - sign
-		twosComp - integerTest
+	for (i <- (127 - 24) to (127 + 24)) {
+		println(i, 23 - (i - 127), (22 - i) & 0x7f)
 	}
-
-	println(ffloor1(1.5f))
-
-	/*for (i <- (127 - 24) to (127 + 24)) {
-		println(i, (22 - i) & 0x7f)
-	}*/
 
 	def fastRoundf(x: Float) = {
 		val bits = floatToIntBits(x)
@@ -214,4 +230,4 @@ object Main extends App {
 		val point5 = (0x00400000 - sign) >> (exp - 127)
 		intBitsToFloat(bits + point5).toInt
 	}
-}
+}*/

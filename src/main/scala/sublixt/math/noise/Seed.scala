@@ -22,22 +22,23 @@ import sublixt.math._
 import java.util.Random
 
 object Seed {
-	val TABLE_SIZE = 0xFF
+	val TABLE_SIZE = 256
 	val defaultPRNG = (x: Long) => xorShift(x)
-	private val baseTable = (0 until Seed.TABLE_SIZE).toArray.map(_.toShort)
+	val defaultSeed = -1L
+	private val baseTable = (0 until Seed.TABLE_SIZE).toArray.map(_.toByte)
 }
 
 import Seed._
-class Seed private (private val values: Array[Short]) {
+class Seed private (private val values: Array[Byte]) {
 	def this(seed: Long, prng: Long => Long) {
-		this(new Array[Short](TABLE_SIZE))
+		this(new Array[Byte](TABLE_SIZE))
 		Array.copy(baseTable, 0, values, 0, TABLE_SIZE)
 
 		var rng = prng(seed)
 
 		var i = 0
 		while (i < TABLE_SIZE) {
-			val swap_i = (rng & TABLE_SIZE).toInt
+			val swap_i = (rng & 0xFF).toInt
 			val swap = values(swap_i)
 			values(swap_i) = values(i)
 			values(i) = swap
@@ -51,13 +52,17 @@ class Seed private (private val values: Array[Short]) {
 		this(seed, defaultPRNG)
 	}
 
+	def this() {
+		this(defaultSeed)
+	}
+
 	def this(rng: Random) {
-		this(new Array[Short](TABLE_SIZE))
+		this(new Array[Byte](TABLE_SIZE))
 		Array.copy(baseTable, 0, values, 0, TABLE_SIZE)
 
 		var i = 0
 		while (i < TABLE_SIZE) {
-			val swap_i = (rng.nextLong() & TABLE_SIZE).toInt
+			val swap_i = (rng.nextLong() & 0xFF).toInt
 			val swap = values(swap_i)
 			values(swap_i) = values(i)
 			values(i) = swap
@@ -66,8 +71,8 @@ class Seed private (private val values: Array[Short]) {
 		}
 	}
 
-	@inline def get1(x: Int) = values(x & TABLE_SIZE)
-	@inline def get2(x: Int, y: Int) = values(get1(x) ^ (y & TABLE_SIZE))
-	@inline def get3(x: Int, y: Int, z: Int) = values(get2(x, y) ^ (z & TABLE_SIZE))
-	@inline def get4(x: Int, y: Int, z: Int, w: Int) = values(get3(x, y, z) ^ (w & TABLE_SIZE))
+	@inline def get1(x: Int) = values(x & 0xFF)
+	@inline def get2(x: Int, y: Int) = values((get1(x) ^ y) & 0xFF) // when converted to Int, Byte carries the sign bit
+	@inline def get3(x: Int, y: Int, z: Int) = values((get2(x, y) ^ z) & 0xFF)
+	@inline def get4(x: Int, y: Int, z: Int, w: Int) = values((get3(x, y, z) ^ w) & 0xFF)
 }

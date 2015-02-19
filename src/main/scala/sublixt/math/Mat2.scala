@@ -58,9 +58,4 @@ case class Mat2(val c0: Vec2, val c1: Vec2) {
 		val d = determinant
 		Mat2(Vec2(c1.y / d, -c0.y / d), Vec2(-c1.x / d, c0.x / d))
 	}
-
-	def store(buffer: FloatBuffer) {
-		c0.store(buffer)
-		c1.store(buffer)
-	}
 }

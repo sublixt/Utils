@@ -21,11 +21,11 @@ case class Vec3(val x: Float, val y: Float, val z: Float) {
 
 	def cross(other: Vec3) = Vec3(y * other.z - z * other.y, z * other.x - x * other.z, x * other.y - y * other.x)
 	def dot(other: Vec3) = x * other.x + y * other.y + z * other.z
-	
+
 	lazy val lengthSquared = x * x + y * y + z * z
 	lazy val length = sqrt(lengthSquared)
 	lazy val normalize = this / length
-	
+
 	def project(onto: Vec3) =
 		onto * (dot(onto) / onto.lengthSquared)
 
@@ -84,12 +84,6 @@ case class Vec3(val x: Float, val y: Float, val z: Float) {
 
 	def toRotationMatrix = Mat4(this)
 	def toQuat = Quat(this)
-	
-	def store(buffer: FloatBuffer) {
-		buffer.put(x)
-		buffer.put(y)
-		buffer.put(z)
-	}
 
 	def xx = Vec2(x, x)
 	def xy = Vec2(x, y)

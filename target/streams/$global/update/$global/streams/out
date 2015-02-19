@@ -7,13 +7,41 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#utils_2.11;0.0.1 [compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving org.scala-lang#scala-library;2.11.4 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@7f1f550c[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@47597205[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-library;2.11.4[0m
 [0m[[0mdebug[0m] [0m	found org.scala-lang#scala-library;2.11.4 in sbt-chain[0m
 [0m[[0mdebug[0m] [0m	[2.11.4] org.scala-lang#scala-library;2.11.4[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->runtime][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving org.scala-lang.modules#scala-async_2.11;0.9.2 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scala-lang.modules#scala-async_2.11;0.9.2 {compile=[default(compile)]}[0m
+[0m[[0minfo[0m] [0mResolving org.scala-lang.modules#scala-async_2.11;0.9.2 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain-delegate: Checking cache for: dependency: org.scala-lang.modules#scala-async_2.11;0.9.2 {compile=[default(compile)]}[0m
+[0m[[0mdebug[0m] [0m		tried C:\Users\Mark Reuter\.ivy2\local\org.scala-lang.modules\scala-async_2.11\0.9.2\ivys\ivy.xml[0m
+[0m[[0mdebug[0m] [0m	local: no ivy file found for org.scala-lang.modules#scala-async_2.11;0.9.2[0m
+[0m[[0mdebug[0m] [0m		tried https://repo1.maven.org/maven2/org/scala-lang/modules/scala-async_2.11/0.9.2/scala-async_2.11-0.9.2.pom[0m
+[0m[[0mdebug[0m] [0m	public: found md file for org.scala-lang.modules#scala-async_2.11;0.9.2[0m
+[0m[[0mdebug[0m] [0m		=> https://repo1.maven.org/maven2/org/scala-lang/modules/scala-async_2.11/0.9.2/scala-async_2.11-0.9.2.pom (0.9.2)[0m
+[0m[[0mdebug[0m] [0mdownloading https://repo1.maven.org/maven2/org/scala-lang/modules/scala-async_2.11/0.9.2/scala-async_2.11-0.9.2.pom ...[0m
+[0m[[0mdebug[0m] [0m	public: downloading https://repo1.maven.org/maven2/org/scala-lang/modules/scala-async_2.11/0.9.2/scala-async_2.11-0.9.2.pom[0m
+[0m[[0mdebug[0m] [0m	public: downloading https://repo1.maven.org/maven2/org/scala-lang/modules/scala-async_2.11/0.9.2/scala-async_2.11-0.9.2.pom.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for https://repo1.maven.org/maven2/org/scala-lang/modules/scala-async_2.11/0.9.2/scala-async_2.11-0.9.2.pom[0m
+[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.scala-lang.modules#scala-async_2.11;0.9.2!scala-async_2.11.pom(pom.original) (283ms)[0m
+[0m[[0mdebug[0m] [0m		tried C:\Users\Mark Reuter\.ivy2\local\org.scala-lang.modules\scala-async_2.11\0.9.2\bundles\scala-async_2.11.jar[0m
+[0m[[0mdebug[0m] [0m		tried https://repo1.maven.org/maven2/org/scala-lang/modules/scala-async_2.11/0.9.2/scala-async_2.11-0.9.2.jar[0m
+[0m[[0mdebug[0m] [0m	found org.scala-lang.modules#scala-async_2.11;0.9.2 in public[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.1 [compile->master(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [compile->master(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.1 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.1 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->master][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'runtime'[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#utils_2.11;0.0.1 [runtime][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#utils_2.11;0.0.1 [compile][0m
@@ -21,6 +49,17 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->runtime][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.1 [compile->master(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [compile->master(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.1 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.1 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->master][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'test'[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#utils_2.11;0.0.1 [test][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#utils_2.11;0.0.1 [runtime][0m
@@ -29,6 +68,17 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->runtime][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.1 [compile->master(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [compile->master(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.1 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.1 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->master][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'provided'[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#utils_2.11;0.0.1 [provided][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'optional'[0m
@@ -40,6 +90,17 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->runtime][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.1 [compile->master(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [compile->master(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.1 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.1 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->master][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#utils_2.11;0.0.1 [optional][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#utils_2.11;0.0.1 [provided][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'runtime-internal'[0m
@@ -50,6 +111,17 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->runtime][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.1 [compile->master(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [compile->master(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.1 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.1 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->master][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#utils_2.11;0.0.1 [optional][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'test-internal'[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#utils_2.11;0.0.1 [test-internal][0m
@@ -60,6 +132,17 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->runtime][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang#scala-library;2.11.4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.1 [compile->master(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [compile->master(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.1 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.1 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang.modules#scala-async_2.11;0.9.2->org.scala-lang#scala-library;2.11.4 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#utils_2.11;0.0.1->org.scala-lang.modules#scala-async_2.11;0.9.2 [compile->master][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#utils_2.11;0.0.1 [optional][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#utils_2.11;0.0.1 [provided][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'plugin'[0m
@@ -85,8 +168,6 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.4->org.scala-lang#scala-library;2.11.4 [compile->runtime][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.4->org.scala-lang#scala-library;2.11.4 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.4->org.scala-lang#scala-library;2.11.4 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.4->org.scala-lang#scala-library;2.11.4 [compile->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.4->org.scala-lang#scala-library;2.11.4 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.4->org.scala-lang#scala-library;2.11.4 [compile->optional(default)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.11.4->org.scala-lang#scala-reflect;2.11.4 [compile->master(*)][0m
 [0m[[0minfo[0m] [0mResolving org.scala-lang#scala-reflect;2.11.4 ...[0m
@@ -155,12 +236,18 @@
 [0m[[0mdebug[0m] [0m	resolved ivy file produced in cache[0m
 [0m[[0mdebug[0m] [0m:: downloading artifacts ::[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-library;2.11.4!scala-library.jar[0m
+[0m[[0mdebug[0m] [0m		tried https://repo1.maven.org/maven2/org/scala-lang/modules/scala-async_2.11/0.9.2/scala-async_2.11-0.9.2.jar[0m
+[0m[[0minfo[0m] [0mdownloading https://repo1.maven.org/maven2/org/scala-lang/modules/scala-async_2.11/0.9.2/scala-async_2.11-0.9.2.jar ...[0m
+[0m[[0mdebug[0m] [0m	public: downloading https://repo1.maven.org/maven2/org/scala-lang/modules/scala-async_2.11/0.9.2/scala-async_2.11-0.9.2.jar[0m
+[0m[[0mdebug[0m] [0m	public: downloading https://repo1.maven.org/maven2/org/scala-lang/modules/scala-async_2.11/0.9.2/scala-async_2.11-0.9.2.jar.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for https://repo1.maven.org/maven2/org/scala-lang/modules/scala-async_2.11/0.9.2/scala-async_2.11-0.9.2.jar[0m
+[0m[[0minfo[0m] [0m	[SUCCESSFUL ] org.scala-lang.modules#scala-async_2.11;0.9.2!scala-async_2.11.jar(bundle) (745ms)[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-compiler;2.11.4!scala-compiler.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-reflect;2.11.4!scala-reflect.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang.modules#scala-xml_2.11;1.0.2!scala-xml_2.11.jar(bundle)[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang.modules#scala-parser-combinators_2.11;1.0.2!scala-parser-combinators_2.11.jar(bundle)[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] jline#jline;2.12!jline.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 360ms :: artifacts dl 31ms[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 2301ms :: artifacts dl 823ms[0m
 [0m[[0mdebug[0m] [0m	report for default#utils_2.11;0.0.1 compile produced in C:\Users\Mark Reuter\Desktop\workspace\Utils\target\resolution-cache\reports\default-utils_2.11-compile.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#utils_2.11;0.0.1 runtime produced in C:\Users\Mark Reuter\Desktop\workspace\Utils\target\resolution-cache\reports\default-utils_2.11-runtime.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#utils_2.11;0.0.1 test produced in C:\Users\Mark Reuter\Desktop\workspace\Utils\target\resolution-cache\reports\default-utils_2.11-test.xml[0m
@@ -174,5 +261,5 @@
 [0m[[0mdebug[0m] [0m	report for default#utils_2.11;0.0.1 docs produced in C:\Users\Mark Reuter\Desktop\workspace\Utils\target\resolution-cache\reports\default-utils_2.11-docs.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#utils_2.11;0.0.1 pom produced in C:\Users\Mark Reuter\Desktop\workspace\Utils\target\resolution-cache\reports\default-utils_2.11-pom.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#utils_2.11;0.0.1 scala-tool produced in C:\Users\Mark Reuter\Desktop\workspace\Utils\target\resolution-cache\reports\default-utils_2.11-scala-tool.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (360ms resolve - 31ms download)[0m
+[0m[[0mdebug[0m] [0m	resolve done (2301ms resolve - 823ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m

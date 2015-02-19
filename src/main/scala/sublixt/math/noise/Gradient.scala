@@ -57,16 +57,16 @@ object Gradient {
 			(-1.0, -1.0, -1.0, 0.0)
 		)
 
-	@inline def get2(index: Int) = {
+	@inline def get2(index: Byte) = {
 		val value = gradient(index & 0x1F)
 		(value._1, value._2)
 	}
 
-	@inline def get3(index: Int) = {
+	@inline def get3(index: Byte) = {
 		val value = gradient(index & 0x1F)
 		(value._1, value._2, value._3)
 	}
 
-	@inline def get4(index: Int) =
+	@inline def get4(index: Byte) =
 		gradient(index & 0x1F)
 }

@@ -72,10 +72,4 @@ case class Mat3(val c0: Vec3, val c1: Vec3, val c2: Vec3) {
 			Vec3(-(c2.z * c1.x - c1.z * c2.x) / d, (c2.z * c0.x - c0.z * c2.x) / d, -(c1.z * c0.x - c0.z * c1.x) / d),
 			Vec3((c2.y * c1.x - c1.y * c2.x) / d, -(c2.y * c0.x - c0.y * c2.x) / d, (c1.y * c0.x - c0.y * c1.x) / d))
 	}
-
-	def store(buffer: FloatBuffer) {
-		c0.store(buffer)
-		c1.store(buffer)
-		c2.store(buffer)
-	}
 }

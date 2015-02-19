@@ -21,8 +21,8 @@ package sublixt.math.noise
 import sublixt.math._
 import Gradient._
 
-class PerlinNoise(val seed: Seed) {
-	def perlin(x: Double, y: Double) = {
+final class PerlinNoise(val seed: Seed) {
+	final def perlin(x: Double, y: Double) = {
 			@inline
 			def gradient(wx: Int, wy: Int, fx: Double, fy: Double) = {
 				val attn = 1.0 - (fx * fx + fy * fy)
@@ -52,7 +52,7 @@ class PerlinNoise(val seed: Seed) {
 		(f00 + f10 + f01 + f11 + 0.053179) * 1.056165
 	}
 
-	def perlin(x: Double, y: Double, z: Double) = {
+	final def perlin(x: Double, y: Double, z: Double) = {
 			@inline
 			def gradient(wx: Int, wy: Int, wz: Int, fx: Double, fy: Double, fz: Double) = {
 				val attn = 1.0 - (fx * fx + fy * fy + fz * fz)
@@ -92,7 +92,7 @@ class PerlinNoise(val seed: Seed) {
 			f001 + f101 + f011 + f111 + 0.053179) * 1.056165
 	}
 
-	def perlin(x: Double, y: Double, z: Double, w: Double) = {
+	final def perlin(x: Double, y: Double, z: Double, w: Double) = {
 			@inline
 			def gradient(wx: Int, wy: Int, wz: Int, ww: Int, fx: Double, fy: Double, fz: Double, fw: Double) = {
 				val attn = 1.0 - (fx * fx + fy * fy + fz * fz + fw * fw)
