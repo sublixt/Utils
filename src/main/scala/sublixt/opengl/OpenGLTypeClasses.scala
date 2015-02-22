@@ -22,7 +22,11 @@ trait GLAttach[A, B] {
 	def attach(a: A, b: B)
 }
 
-trait GLGet[A, @specialized(Int) B, @specialized(Boolean, Int) C] {
+trait GLGet1[A, @specialized(Boolean, Int) B] {
+	def get(a: A): B
+}
+
+trait GLGet2[A, @specialized(Int) B, @specialized(Boolean, Int) C] {
 	def get(a: A, b: B): C
 }
 

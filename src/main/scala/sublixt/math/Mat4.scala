@@ -198,6 +198,7 @@ case class Mat4(val c0: Vec4, val c1: Vec4, val c2: Vec4, val c3: Vec4) {
 	def rotx(angle: Float) = {
 		val c = cos(angle)
 		val s = sin(angle)
+
 		Mat4(
 			c0,
 			Vec4(c1.x * c + c2.x * s, c1.y * c + c2.y * s, c1.z * c + c2.z * s, c1.w * c + c2.w * s),
@@ -227,7 +228,38 @@ case class Mat4(val c0: Vec4, val c1: Vec4, val c2: Vec4, val c3: Vec4) {
 			c3)
 	}
 
-	//TODO implement the 3 in 1 rotation method...
+	def rot(bank: Float, heading: Float, attitude: Float): Mat4 = {
+		val sa = sin(attitude)
+		val ca = cos(attitude)
+		val sb = sin(bank)
+		val cb = cos(bank)
+		val sh = sin(heading)
+		val ch = cos(heading)
+
+		val shsa = sh * sa
+		val chsa = ch * sa
+
+		Mat4(
+			Vec4(
+				c0.x * (ch * ca) + c1.x * sa - c2.x * (sh * ca),
+				c0.y * (ch * ca) + c1.y * sa - c2.y * (sh * ca),
+				c0.z * (ch * ca) + c1.z * sa - c2.z * (sh * ca),
+				c0.w * (ch * ca) + c1.w * sa - c2.w * (sh * ca)),
+			Vec4(
+				c0.x * (-chsa * cb + sh * sb) + c1.x * (ca * cb) + c2.x * (shsa * cb + ch * sb),
+				c0.y * (-chsa * cb + sh * sb) + c1.y * (ca * cb) + c2.y * (shsa * cb + ch * sb),
+				c0.z * (-chsa * cb + sh * sb) + c1.z * (ca * cb) + c2.z * (shsa * cb + ch * sb),
+				c0.w * (-chsa * cb + sh * sb) + c1.w * (ca * cb) + c2.w * (shsa * cb + ch * sb)),
+			Vec4(
+				c0.x * (chsa * sb + sh * cb) - c1.x * (ca * sb) + c2.x * (-shsa * sb + ch * cb),
+				c0.y * (chsa * sb + sh * cb) - c1.y * (ca * sb) + c2.y * (-shsa * sb + ch * cb),
+				c0.z * (chsa * sb + sh * cb) - c1.z * (ca * sb) + c2.z * (-shsa * sb + ch * cb),
+				c0.w * (chsa * sb + sh * cb) - c1.w * (ca * sb) + c2.w * (-shsa * sb + ch * cb)),
+			c3)
+	}
+
+	def rot(vec: Vec3): Mat4 =
+		rot(vec.x, vec.y, vec.z)
 
 	def translate(x: Float, y: Float, z: Float): Mat4 =
 		Mat4(c0, c1, c2,

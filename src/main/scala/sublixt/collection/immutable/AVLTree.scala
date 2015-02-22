@@ -147,28 +147,28 @@ case class AVLNode[A](left: AVLTree[A], value: A, right: AVLTree[A]) extends AVL
 		val vsum = f(rsum, value)
 		left.foldRight(vsum)(f)
 	}
-	
+
 	def foldPreOrder[B](sum: B)(f: (B, A) => B): B = {
 		val vsum = f(sum, value)
 		val lsum = left.foldPreOrder(vsum)(f)
 		right.foldPreOrder(lsum)(f)
 	}
-	
+
 	def foldPostOrder[B](sum: B)(f: (B, A) => B): B = {
 		val lsum = left.foldPostOrder(sum)(f)
 		val rsum = right.foldPostOrder(lsum)(f)
 		f(rsum, value)
 	}
-	
+
 	def foreach(f: A => Unit) {
 		left foreach f
 		f(value)
 		right foreach f
 	}
-	
+
 	def isEmpty = false
-	//these two being vals is very important for performance 
-	val depth = scala.math.max(left.depth, right.depth) + 1
+	//these two being vals is very important for performance
+	val depth = sublixt.math.max(left.depth, right.depth) + 1
 	val balance = left.depth - right.depth
 }
 

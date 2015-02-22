@@ -49,7 +49,7 @@ case class Node[+A](val left: Tree[A], val value: A, val right: Tree[A]) extends
 			combineLeftRight(left, right)
 		}
 	}
-	
+
 	def apply[A1 >: A](elem: A1)(implicit order: Ordering[A1]) = {
 		val comp = order.compare(elem, value)
 		if (comp == 0) this
@@ -63,7 +63,7 @@ case class Node[+A](val left: Tree[A], val value: A, val right: Tree[A]) extends
 		else if (comp > 0) right.contains(elem)
 		else left.contains(elem)
 	}
-	
+
 	def prune[A1 >: A](min: A1, max: A1)(implicit order: Ordering[A1]): Tree[A1] = {
 		val minComp = order.compare(value, min)
 		val maxComp = order.compare(max, value)
@@ -74,7 +74,7 @@ case class Node[+A](val left: Tree[A], val value: A, val right: Tree[A]) extends
 		else
 			Node(left.prune(min, max), value, right.prune(min, max))
 	}
-	
+
 	def foldLeft[B](sum: B)(f: (B, A) => B): B = {
 		val lsum = left.foldLeft(sum)(f)
 		val vsum = f(lsum, value)
@@ -86,13 +86,13 @@ case class Node[+A](val left: Tree[A], val value: A, val right: Tree[A]) extends
 		val vsum = f(rsum, value)
 		left.foldRight(vsum)(f)
 	}
-	
+
 	def foldPreOrder[B](sum: B)(f: (B, A) => B): B = {
 		val vsum = f(sum, value)
 		val lsum = left.foldPreOrder(vsum)(f)
 		right.foldPreOrder(lsum)(f)
 	}
-	
+
 	def foldPostOrder[B](sum: B)(f: (B, A) => B): B = {
 		val lsum = left.foldPostOrder(sum)(f)
 		val rsum = right.foldPostOrder(lsum)(f)
@@ -104,7 +104,7 @@ case class Node[+A](val left: Tree[A], val value: A, val right: Tree[A]) extends
 		f(value)
 		right foreach f
 	}
-	
+
 	lazy val depth = scala.math.max(left.depth, right.depth) + 1
 	def isEmpty = false
 }
@@ -123,12 +123,4 @@ case object Leaf extends Tree[Nothing] {
 	def foreach(f: Nothing => Unit) {}
 	def depth = 0
 	def isEmpty = true
-}
-
-object Main extends App {
-	val bla = (1 to 5000000).toList map (x => scala.util.Random.nextInt())
-	def getTime = System.nanoTime / 1000000
-	val start = getTime
-	bla.foldLeft(Tree.empty[Int])(_ + _)
-	println(getTime - start)
 }

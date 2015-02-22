@@ -6,7 +6,7 @@ import org.lwjgl.opengl.GL20
 object VertexShaderImpl
 		extends GLGen[VertexShader] with GLDelete[VertexShader]
 		with GLInfoLog[VertexShader] with GLCompile[VertexShader]
-		with GLAttach[VertexShader, String] with GLGet[VertexShader, TFStatus, Boolean] {
+		with GLAttach[VertexShader, String] with GLGet2[VertexShader, TFStatus, Boolean] {
 
 	def gen() = new VertexShader(GL20.glCreateShader(GL20.GL_VERTEX_SHADER))
 	def delete(obj: VertexShader) = GL20.glDeleteShader(obj.id)

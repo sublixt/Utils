@@ -10,6 +10,9 @@ import scala.io.Source
 import javax.imageio.ImageIO
 import sublixt.bufferutils._
 import sublixt.opengl._
+import java.nio.IntBuffer
+import java.nio.FloatBuffer
+import java.nio.ByteBuffer
 
 object Main extends App {
 	NativeExtractor.extractToTempFromZip(new File(System.getProperty("user.home") + File.separator + "Desktop" + File.separator + "native.zip")) match {
@@ -27,7 +30,7 @@ object Main extends App {
 	glfwDefaultWindowHints()
 	glfwWindowHint(GLFW_VISIBLE, GL_TRUE)
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE)
-	val id = glfwCreateWindow(640, 480, "Test", 0, 0)
+	val id = glfwCreateWindow(1200, 900, "Test", 0, 0)
 
 	glfwMakeContextCurrent(id)
 	val context = GLContext.createFromCurrent()
@@ -48,7 +51,7 @@ object Main extends App {
 				-1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f
 			)
 
-		val buffer = BufferUtils.createFloatBuffer(array.length)
+		val buffer = create[FloatBuffer](array.length)
 		buffer.put(array)
 		buffer.flip()
 
@@ -65,7 +68,7 @@ object Main extends App {
 		val array =
 			Array(0, 1, 2, 2, 3, 0)
 
-		val buffer = BufferUtils.createIntBuffer(array.length)
+		val buffer = create[IntBuffer](array.length)
 		buffer.put(array)
 		buffer.flip()
 
@@ -84,9 +87,6 @@ object Main extends App {
 	val vertSource = readSource("vert.vert")
 	glAttach(frag, fragSource)
 	glAttach(vert, vertSource)
-
-	println(vertSource)
-	println(fragSource)
 
 	glCompile(frag)
 	glCompile(vert)
@@ -108,7 +108,7 @@ object Main extends App {
 	val tex = glGen[Tex2D]
 	locally {
 		val image = ImageIO.read(getClass.getResourceAsStream("crate.jpg"))
-		val buffer = BufferUtils.createByteBuffer(image.getWidth * image.getHeight * 4)
+		val buffer = create[ByteBuffer](image.getWidth * image.getHeight * 4)
 		buffer.put(image)
 		buffer.flip()
 
@@ -121,12 +121,7 @@ object Main extends App {
 	}
 
 	val mat = Mat4.translate(0f, 0f, -3f)
-	val buffer = BufferUtils.createFloatBuffer(16)
-
 	val proj = Mat4.perspective(75f * degToRad, 4f / 3, -1f, -100f)
-	val buffer2 = BufferUtils.createFloatBuffer(16)
-	buffer2.put(proj)
-	buffer2.flip
 
 	val loc = glGetUniformLocation(program, "trans")
 	val loc2 = glGetUniformLocation(program, "projection")
@@ -143,16 +138,14 @@ object Main extends App {
 		lastTime = currentTime
 
 		rot += delta * 10 * degToRad * 0.005f
-		buffer.put(mat.roty(rot).rotx(rot).rotz(rot))
-		buffer.flip
 
 		for {
 			_ <- glBind(program)
 			_ <- glBind(tex)
 			_ <- glBind(vao)
 		} {
-			glUniformMatrix4(loc, buffer)
-			glUniformMatrix4(loc2, buffer2)
+			glUniform(loc, mat.rot(0, 0, rot))
+			glUniform(loc2, proj)
 
 			glDrawElements(GL_TRIANGLES, 6, 0)
 		}

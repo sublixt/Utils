@@ -2,9 +2,8 @@ package sublixt.concurrent
 
 import java.util.concurrent.atomic.AtomicReferenceArray
 
-//For the most part this is thread safe...
 class AtomicArrayQueue[T] private[concurrent] (
-		private var buffer: AtomicReferenceArray[T],
+		@volatile private var buffer: AtomicReferenceArray[T],
 		@volatile private var h: Int,
 		@volatile private var p: Int) {
 
@@ -23,7 +22,7 @@ class AtomicArrayQueue[T] private[concurrent] (
 	def +=(t: T) {
 		buffer.set(p, t)
 		p = nextIndex(p)
-		if (p == h) grow()
+		if (p == h) buffer = grow()
 	}
 
 	def apply() =
@@ -48,8 +47,7 @@ class AtomicArrayQueue[T] private[concurrent] (
 		else next
 	}
 
-	//this method is a little thread unsafe
-	private def grow() {
+	private def grow() = {
 		val newLength = (buffer.length * 3) / 2 + 2
 		val newBuffer = new AtomicReferenceArray[T](newLength)
 		var c = 0
@@ -63,6 +61,6 @@ class AtomicArrayQueue[T] private[concurrent] (
 
 		h = 0
 		p = c
-		buffer = newBuffer
+		newBuffer
 	}
 }

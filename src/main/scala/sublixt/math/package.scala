@@ -31,6 +31,12 @@ package object math
 	final def max(x: Float, y: Float) =
 		if (x > y) x else y
 
+	final def min(x: Int, y: Int) =
+		if (x < y) x else y
+
+	final def max(x: Int, y: Int) =
+		if (x > y) x else y
+
 	final def clamp(x: Float, min: Float, max: Float) =
 		if (x < min) min
 		else if (x > max) max
